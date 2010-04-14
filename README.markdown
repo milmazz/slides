@@ -19,7 +19,7 @@ del análisis estático del código, se indica los pasos a seguir para la
 detección de errores mediante la herramienta **Pylint**, se exponen sus
 funcionalidades, reportes y se muestran ejemplos para corregir los errores
 encontrados por la herramienta.
- * *Desarrollo colectuvo en Turpial*, se describe la visión del cliente para
+ * *Desarrollo colectivo en Turpial*, se describe la visión del cliente para
 *Twitter* [Turpial][], sus funcionalidades actuales, el uso de herramientas
 como [Transifex][], [PyBabel][], Distutils, [Sphinx][], dichas herramientas facilitan
 y mejoran la calidad del software que se desarrolla.
