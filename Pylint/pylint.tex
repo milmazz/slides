@@ -1,0 +1,530 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Frankfurt}
+  \setbeamercovered{transparent}
+  \useoutertheme{tree}
+  \useinnertheme{rounded}
+}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% Redefinicion de teorema, definicion, ejemplo
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definición}
+\newtheorem{ejemplo}{Ejemplo}
+
+\hypersetup{colorlinks=true,linkcolor=red}
+
+\title{Análisis estático del código fuente en Python}
+\subtitle{Pylint}
+\author[Milton Mazzarri]{Milton Mazzarri \\
+\texttt{<milmazz@gmail.com>} \\
+}
+\date{Marzo, 2010}
+
+\subject{Análisis estático de código en Python}
+
+\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Contenido}
+    \tableofcontents
+\end{frame}
+
+\section{Conceptos}
+
+\subsection{Análisis estático de código}
+
+\begin{frame}
+    \frametitle{¿Análisis estático de código?}
+
+    \begin{definicion}
+    El análisis estático del código se refiere al proceso de evaluación del
+    código fuente sin ejecutarlo, en base a este análisis se obtendrá
+    información que nos permita mejorar la línea base de nuestro proyecto,
+    sin alterar la semántica original de la aplicación.
+    \end{definicion}
+\end{frame}
+
+\subsection{Pylint}
+
+\begin{frame}
+    \frametitle{¿Qué es Pylint?}
+
+    \begin{definicion}
+    Su misión es analizar código en Python en busca de errores o síntomas de
+    mala calidad en el código fuente. Cabe destacar que por omisión, la guía de
+    estilo a la que se trata de apegar
+    \href{http://www.logilab.org/project/pylint}{Pylint} es la descrita en
+    el \href{http://www.python.org/dev/peps/pep-0008/}{PEP-8}.
+    \end{definicion}
+\end{frame}
+
+\section{Consideraciones}
+
+\subsection{Labores de revisión manual}
+
+\frame{
+    \frametitle{Labores de revisión manual}
+
+    \begin{itemize}
+        \item 
+            Pylint no sustituye las labores de revisión continua de alto 
+            nivel:
+            \begin{itemize}
+                \item Estructura.
+                \item Arquitectura.
+                \item Comunicación con elementos externos como bibliotecas.
+                \item Diseño.
+            \end{itemize}
+    \end{itemize}
+}
+
+\subsection{Falsos positivos}
+
+\frame{
+    \frametitle{Falsos positivos}
+
+    \begin{itemize}
+        \item Pylint puede arrojar falsos positivos
+        \begin{itemize}
+            \item Puede entenderse al recibir una alerta de algún cambio que usted realizó conscientemente.
+            \item Algunas de las advertencias encontradas pueden ser peligrosas en algunos contextos, pero en otros puede no aplicar.
+            \item Se hacen revisiones de declaraciones que a usted realmente no le importan.
+        \end{itemize}
+        \item Informe al revisor para ajustar la configuración de Pylint para no ser informado acerca de ciertos tipos de advertencias o errores.
+    \end{itemize}
+}
+
+\section{Revisiones}
+
+\subsection{Básicas}
+
+\begin{frame}
+    \frametitle{Revisiones básicas}
+
+    \begin{itemize}
+          \item Presencia de cadenas de documentación (\emph{docstring}).
+          \item Nombres de módulos, clases, funciones, métodos, argumentos, variables.
+          \item Número de argumentos, variables locales, retornos y sentencias en funciones y métodos.
+          \item Atributos requeridos para módulos.
+          \item Valores por omisión no recomendados como argumentos.
+          \item Redefinición de funciones, métodos, clases.
+          \item Uso de declaraciones globales.
+    \end{itemize}
+\end{frame}
+
+\subsection{Variables}
+
+\begin{frame}
+    \frametitle{Revisión de variables}
+
+    \begin{itemize}
+          \item Determina si una variable o \texttt{import} no está siendo usado.
+          \item Variables indefinidas.
+          \item Redefinición de variables proveniente de módulos \emph{builtins} o de ámbito externo.
+          \item Uso de una variable antes de asignación de valor.
+    \end{itemize}
+\end{frame}
+
+\subsection{Clases}
+
+\begin{frame}
+    \frametitle{Revisión de clases}
+
+    \begin{itemize}
+          \item Métodos sin \texttt{self} como primer argumento.
+          \item Acceso único a miembros existentes vía \texttt{self}
+          \item Atributos no definidos en el método \texttt{\_\_init\_\_}
+          \item Código inalcanzable.
+    \end{itemize}
+\end{frame}
+
+\subsection{Diseño}
+
+\begin{frame}
+    \frametitle{Revisión de diseño}
+
+    \begin{itemize}
+          \item Número de métodos, atributos, variables locales, \ldots
+          \item Tamaño, complejidad de funciones, métodos, \ldots
+    \end{itemize}
+\end{frame}
+
+\subsection{Importaciones}
+
+\begin{frame}
+    \frametitle{Revisión de importaciones}
+
+    \begin{itemize}
+          \item Dependencias externas.
+          \item \emph{imports} relativos o importe de todos los métodos, variables vía \texttt{*} (\emph{wildcard}).
+          \item Uso de \emph{imports} cíclicos.
+          \item Uso de módulos obsoletos.
+    \end{itemize}
+\end{frame}
+
+\subsection{Conflictos de estilos}
+
+\begin{frame}
+    \frametitle{Conflictos entre viejo/nuevo estilo}
+
+    \begin{itemize}
+          \item Uso de \texttt{property}, \texttt{\_\_slots\_\_}, \texttt{super}.
+          \item Uso de \texttt{super}.
+    \end{itemize}
+\end{frame}
+
+\subsection{Formato}
+
+\begin{frame}
+    \frametitle{Revisiones de formato}
+
+    \begin{itemize}
+          \item Construcciones no autorizadas
+          \item Sangrado estricto del código
+          \item Longitud de la línea
+          \item Uso de \texttt{<>} en vez de \texttt{!=}
+    \end{itemize}
+\end{frame}
+
+\subsection{Otras revisiones}
+
+\begin{frame}
+    \frametitle{Otras revisiones}
+    \begin{itemize}
+          \item Notas de alerta en el código como \texttt{FIXME}, \texttt{XXX}.
+          \item Código fuente con caracteres non-ASCII sin tener una declaración de encoding. \href{http://www.python.org/dev/peps/pep-0263/}{PEP-263}
+          \item Búsqueda por similitudes o duplicación en el código fuente.
+          \item Revisión de excepciones.
+          \item Revisiones de tipo haciendo uso de inferencia de tipos.
+    \end{itemize}
+\end{frame}
+
+\section{Reportes}
+
+\begin{frame}
+
+    \frametitle{Reportes}
+
+    Posterior a los mensajes de análisis mostrados, Pylint despliega una serie de reportes, cada uno de ellos enfocándose en un aspecto particular del proyecto, como el número de mensajes por categorias, dependencias de módulos, \ldots
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Número de módulos procesados}
+
+\begin{ejemplo}
+\begin{verbatim}
+Report
+======
+1895 statements analysed.
+\end{verbatim}
+\end{ejemplo}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Duplicación de código fuente}
+
+\begin{tabular}{|l|c|c|c|}
+\hline
+                 & \textbf{now}   &\textbf{previous} &\textbf{difference} \\
+\hline
+\hline
+\textbf{nb duplicated lines}      &274   &NC       &NC         \\
+\hline
+\textbf{percent duplicated lines} &5.591 &NC       &NC         \\
+\hline
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Estadísticas por tipo}
+
+\small
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{type}     &\textbf{number} &\textbf{\%documented} &\textbf{\%badname} \\
+\hline
+\hline
+\textbf{module}   &14     &85.71       &57.14    \\
+\hline
+\textbf{class}    &12     &100.00      &66.67    \\
+\hline
+\textbf{method}   &145    &85.52       &83.45    \\
+\hline
+\textbf{function} &1      &100.00      &0.00     \\
+\hline
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Errores y advertencias por módulo}
+
+\small
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{module}                    &\textbf{error} &\textbf{warning} &\textbf{refactor} &\textbf{convention} \\
+\hline
+\hline
+\texttt{tests.test\_cheese}         &75.00 &1.93    &9.09     &20.48      \\
+\hline
+\texttt{tests.test\_spam}         &25.00 &1.86    &4.55     &27.01      \\
+\hline
+\texttt{tests.test\_main}             &0.00  &78.97   &33.33    &4.17       \\
+\hline
+\texttt{tests.test\_eggs}         &0.00  &2.35    &4.55     &28.94      \\
+\hline
+\texttt{tests.test\_ham}         &0.00  &1.89    &4.55     &4.11       \\
+\hline
+\texttt{tests.common}        &0.00  &1.86    &9.09     &3.56       \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Número de mensajes por categorías}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+type & number & previous & difference \\
+\hline
+\hline
+convention & 1655 & NC & NC \\
+\hline
+refactor & 66 & NC & NC \\
+\hline
+warning & 28339 & NC & NC \\
+\hline
+error & 4 & NC & NC \\
+\hline
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Tipos de categorías de los mensajes}
+\begin{description}
+\item[Refactorización] Violación en alguna buena práctica.
+\item[Convención] Violación al estándar de codificación.
+\item[Advertencia] Problemas de estilo o errores de programación menores.
+\item[Error] Errores de programación importantes, es probable que se trate de un \emph{bug}.
+\item[Fatal] Errores que no permiten a Pylint avanzar en su análisis. 
+\end{description}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Formato de salida}
+
+El formato de salida del ejemplo utilizado está en modo texto, usted puede elegir entre: 
+
+\begin{itemize}
+    \item Coloreado
+    \item Texto
+    \item MSVS (Visual Studio)
+    \item HTML.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Total de ocurrencias de errores}
+El reporte ordena los resultados por el \texttt{id} del mensaje.
+\begin{tabular}{|c|c|}
+\hline
+message id & occurences \\
+\hline
+\hline
+W0612      &11010      \\
+\hline
+W0621      &10837      \\
+\hline
+W0614      &6169       \\
+\hline
+C0301      &1133       \\
+\hline
+C0103      &346        \\
+\hline
+W0105      &103        \\
+\hline
+C0324      &100        \\
+\hline
+\end{tabular}
+\end{frame}
+
+\section{Puntuación}
+
+\begin{frame}[fragile]
+    \frametitle{Puntuación}
+Si usted ejecuta Pylint varias veces sobre el mismo código, podrá ver el puntaje de la corrida previa junto al resultado de la corrida actual, de esta manera puede saber si ha mejorado la calidad de su código o no.
+
+\begin{ejemplo}
+\begin{semiverbatim}
+Global evaluation
+-----------------
+Your code has been rated at \textbf{-148.73/10}
+\alert{You have to do something quick !}
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\section{Proceso de corrección}
+
+\subsection{Instalación}
+
+\begin{frame}[fragile]
+\frametitle{Instalación en Debian GNU/Linux}
+
+\begin{ejemplo}
+\small
+\begin{semiverbatim}
+# \textbf{aptitude install pylint}
+\$ \textbf{pylint --version}
+pylint 0.19.0, 
+astng 0.19.3, common 0.48.1
+Python 2.5.5 (r255:77872, Mar 16 2010, 01:44:35) 
+[GCC 4.4.3]
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\subsection{Ejecución}
+
+\begin{frame}[fragile]
+\frametitle{Ejecución de Pylint}
+
+\begin{ejemplo}
+\tiny
+\begin{semiverbatim}
+\$ cd montecarlo
+\$ export PYTHONPATH=\$PWD
+\$ \textbf{pylint --rcfile=pylintrc -f html --files-output=y scia/tests/}
+\end{semiverbatim}
+\end{ejemplo}
+El resumen del reporte lo podrá encontrar en \texttt{pylint\_global.html}.
+\end{frame}
+
+\subsection{Conociendo el detalle del error}
+
+\begin{frame}[fragile]
+    \frametitle{Conozca que produjo el error}
+
+    \begin{ejemplo}
+    \begin{semiverbatim}
+\$ \textbf{pylint --help-msg=W0612}
+:W0612: *Unused variable \%r*
+  Used when a variable is defined 
+  but not used. 
+  This message belongs to the
+  variables checker.
+\end{semiverbatim}
+    \end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Se ha encontrado la falla}
+
+\begin{ejemplo}
+\tiny
+\begin{semiverbatim}
+# scia.tests.test\_main.py
+def test\_ham(self):
+  \alert{from scia.tests.common import *}
+  cheese = TestSpam(self.main, self.delayKey, \ldots
+  cheese.test\_spam\_method()
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Se corrige la falla}
+
+\begin{ejemplo}
+\small
+\begin{semiverbatim}
+# scia.tests.test\_main.py
+def test\_ham(self):
+  {\color{green}from scia.tests.common import TestSpam
+  cheese = TestSpam(self.main,
+                    self.delayKey,
+                    self.delayMouse, 
+                    self.delayThread, 
+                    self.app)}
+  cheese.test\_spam\_method()
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\subsection{Primer avance}
+
+\begin{frame}[fragile]
+\frametitle{Resultado}
+
+\begin{ejemplo}
+\begin{semiverbatim}
+
+Global evaluation
+-----------------
+Your code has been rated at \textbf{-33.18/10}
+You have to do something quick !
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\subsection{Segundo avance}
+\begin{frame}[fragile]
+\frametitle{Segundo avance}
+
+\begin{ejemplo}
+\begin{semiverbatim}
+\$ \textbf{pylint --help-msg=W0614}
+:W0614: *Unused import \%s from wildcard import*
+  Used when an imported module
+  or variable is not used
+  from a 'from X import *'
+  style import.
+  This message belongs to the
+  variables checker.
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{ejemplo}
+\small
+\begin{semiverbatim}
+# Incorrecto
+\alert{from PyQt4.QtCore import *}
+# Correcto
+\color{green}{from PyQt4.QtCore import QTimer, QPoint, SIGNAL}
+\end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\frame{
+    \frametitle{Enlaces de interés}
+
+    \begin{itemize}
+    \item \href{http://blog.milmazz.com.ve/archivos/2010/03/13/pylint-analisis-estatico-del-codigo-en-python}{Pylint: Análisis estático del código en Python}
+    \item \href{http://pylint-messages.wikidot.com/}{Mensajes en Pylint}
+    \item \href{http://www.logilab.org/card/pylintfeatures}{Características de Pylint}
+    \item \href{http://www.logilab.org/card/pylint_tutorial}{Tutorial de Pylint}
+    \end{itemize}
+}
+
+\end{document}
