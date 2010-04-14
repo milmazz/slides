@@ -21,8 +21,32 @@ funcionalidades, reportes y se muestran ejemplos para corregir los errores
 encontrados por la herramienta.
  * *Desarrollo colectivo en Turpial*, se describe la visión del cliente para
 *Twitter* [Turpial][], sus funcionalidades actuales, el uso de herramientas
-como [Transifex][], [PyBabel][], Distutils, [Sphinx][], dichas herramientas facilitan
+como [Transifex][], [PyBabel][], [Distutils][], [Sphinx][], dichas herramientas facilitan
 y mejoran la calidad del software que se desarrolla.
+
+Convertir las fuentes .tex a PDF
+--------------------------------
+
+Lo primero que debe hacer es descargar el código fuente en LaTeX de las
+presentaciones, debe tomar en cuenta que para ello necesita tener
+instalado [Git][]:
+
+    $ git clone http://github.com/milmazz/Presentations.git
+    $ cd Presentations
+
+Antes de utilizar el comando `pdflatex` asegúrese de tener instalado
+el paquete [Beamer][], el procedimiento de instalación puede variar
+dependiendo de su Distribución GNU/Linux o Sistema Operativo.
+
+En sistemas Debian GNU/Linux o derivados para instalar el paquete
+[Beamer][] es tan sencillo como ejecutar el siguiente comando
+como superusuario:
+
+    # aptitude install latex-beamer
+
+Finalmente, podrá generar la presentación de la siguiente manera:
+
+    $ pdflatex <presentacion>.tex
 
 [Beamer]: http://latex-beamer.sourceforge.net/ 'The LaTeX Beamer Class'
 [LaTeX]: http://www.latex-project.org/ 'LaTeX – A document preparation system'
@@ -31,3 +55,4 @@ y mejoran la calidad del software que se desarrolla.
 [PyBabel]: http://babel.edgewall.org/ 'Babel – Collection of tools for internationalizing Python applications'
 [Distutils]: http://docs.python.org/library/distutils.html 'Distutils – Building and installing Python modules'
 [Sphinx]: http://sphinx.pocoo.org/ 'Sphinx – Python Documentation Generator'
+[Git]: http://git-scm.com/ 'Git - the fast version control system'
