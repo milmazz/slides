@@ -23,6 +23,9 @@ encontrados por la herramienta.
 *Twitter* [Turpial][], sus funcionalidades actuales, el uso de herramientas
 como [Transifex][], [PyBabel][], [Distutils][], [Sphinx][], dichas herramientas facilitan
 y mejoran la calidad del software que se desarrolla.
+ * *Canaima GNU/Linux, una introducción*, se describe la historia, definición
+del proyecto [Canaima], principales características, procesos para colaborar,
+enlaces de interés, entre otros.
 
 Convertir las fuentes .tex a PDF
 --------------------------------
@@ -56,3 +59,4 @@ Finalmente, podrá generar la presentación de la siguiente manera:
 [Distutils]: http://docs.python.org/library/distutils.html 'Distutils – Building and installing Python modules'
 [Sphinx]: http://sphinx.pocoo.org/ 'Sphinx – Python Documentation Generator'
 [Git]: http://git-scm.com/ 'Git - the fast version control system'
+[Canaima]: http://canaima.softwarelibre.gob.ve 'Canaima GNU/Linux'

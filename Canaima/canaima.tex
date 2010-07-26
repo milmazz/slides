@@ -1,0 +1,372 @@
+% Copyright (c) 2010 Milton Mazzarri <milmazz@gmail.com>
+% All rights reserved.
+% 
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+% 1. Redistributions of source code must retain the above copyright
+%    notice, this list of conditions and the following disclaimer.
+% 2. Redistributions in binary form must reproduce the above copyright
+%    notice, this list of conditions and the following disclaimer in the
+%    documentation and/or other materials provided with the distribution.
+% 3. The name of the author may not be used to endorse or promote products
+%    derived from this software without specific prior written permission.
+% 
+% THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+% IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+% OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+% IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+% NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+% DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+% THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+% (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+% THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Frankfurt}
+  \setbeamercovered{transparent}
+  \useoutertheme{tree}
+  \useinnertheme{rounded}
+}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+% Redefinicion de teorema, definicion, ejemplo
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definición}
+\newtheorem{ejemplo}{Ejemplo}
+
+\hypersetup{colorlinks=true,linkcolor=red}
+
+\title{Canaima GNU/Linux}
+\subtitle{Introducción}
+\author[Milton Mazzarri]{Milton Mazzarri \\
+\texttt{<milmazz@gmail.com>}}
+\institute[CUHELAV]{Colegio Universitario Hotel Escuela de los Andes
+Venezolanos}
+\date{Julio, 2010}
+
+\subject{Canaima GNU/Linux}
+
+ \AtBeginSection[]
+{
+  \begin{frame}<beamer>[allowframebreaks]{Contenido}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% \begin{frame}[allowframebreaks]{Contenido}
+%    \tableofcontents[pausesections]
+% \end{frame}
+
+\section{Software Libre}
+
+\frame{
+    \frametitle{Software Libre}
+
+    \begin{description}
+        \item[Libertad 0] La libertad de ejecutar el programa, para cualquier
+        propósito.
+        \item[Libertad 1] La libertad de estudiar cómo trabaja el programa, y
+        cambiarlo para que haga lo que usted quiera\footnote{ El acceso al
+        código fuente es una condición necesaria para ello.}. 
+        \item[Libertad 2] La libertad de redistribuir copias para que pueda
+        ayudar al prójimo. 
+        \item[Libertad 3] La libertad de distribuir copias de sus versiones
+        modificadas a terceros\footnote{Si lo hace, puede dar a toda la
+        comunidad una oportunidad de beneficiarse de sus cambios}. 
+    \end{description}
+}
+
+\section{Definición}
+
+\frame{
+    \frametitle{Canaima GNU/Linux en su fase inicial}
+
+    \begin{definicion}
+    Surge inicialmente como respuesta a las necesidades ofimáticas y de otros
+    procesos productivos de los usuarios finales de la \emph{Administración Pública
+    Nacional} (APN), y para dar cumplimiento al decreto presidencial Nro. 3.390
+    sobre el uso de Tecnologías de Información Libres en la APN.
+    \end{definicion}
+}
+
+\frame{
+    \frametitle{¿Qué es Canaima GNU/Linux hoy día?}
+
+    \begin{definicion}
+    Proyecto socio-tecnológico abierto, construido de forma colectiva, centrado
+    en el desarrollo de herramientas y modelos productivos basados en las
+    Tecnologías de Información Libres (TIL) de software y sistemas operativos
+    cuyo objetivo es generar capacidades nacionales, desarrollo endógeno,
+    apropiación y promoción del libre conocimiento, sin perder su motivo
+    original: la construcción de una Nación venezolana tecnológicamente
+    preparada.
+    \end{definicion}
+}
+
+\section{Características}
+
+\frame{
+    \frametitle{Características principales}
+
+    \begin{itemize}
+        \item Totalmente desarrollada en Software Libre.
+        \item No está limitada al uso en la APN, puede ser usado por cualquier
+        persona.
+        \item Se encuentra equipado con herramientas ofimáticas:
+        \begin{itemize}
+            \item Procesador de palabras
+            \item Hojas de cálculo
+            \item Presentaciones
+        \end{itemize}
+        \item También incluye herramientas para:
+        \begin{itemize}
+            \item Diseño gráfico
+            \item Planificación de proyectos
+            \item Bases de datos
+        \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Características principales}
+
+    \begin{itemize}
+        \item Facilita la interacción con Internet a través de su navegador
+        Web, gestor de correo electrónico y aplicaciones para realizar llamadas
+        telefónicas por la red.
+        \item Es segura, Canaima está basada en la versión estable de Debian
+        GNU/Linux, la cual pasa por una serie de procesos y pruebas rigurosas
+        de calidad.
+        \item Realizada en Venezuela por talento nacional.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Distribución basada en Debian GNU}
+
+    \begin{itemize}
+        \item Arquitectura soportadas: x86, PowerPC, IA-32, S/390, HP PA-RISC,
+        SPARC, IA-64, m68k, MIPS, MIPSEL, AMD64, EMT64T, Alpha.
+        \item Ofrece soporte más allá del kernel \alert{linux}: GNU/Hurd,
+        GNU/NetBSD, GNU/kFreeBSD. 
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Measuring Etch, The size of Debian 4.0}
+
+    Investigación llevada a cabo por la Universidad Rey Juan Carlos, Madrid,
+    España.
+
+    \begin{itemize}
+        \item COnstructive COst Model
+        \begin{itemize}
+            \item Técnica de estimación usada en
+            Ingeniería clásica del Software.
+            \item Medir líneas de código.
+            \item Medir salarios al mes.
+        \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{¿Cuanto costaría escribir Debian GNU/Linux 4.0?}
+
+    Asuma que está escribiendo este Sistema Operativo desde cero.
+
+    \begin{itemize}
+        \item Esfuerzo estimado: 73400 personas/año
+        \item Tiempo estimado: cerca de 9 años
+        \item Costos estimados: 6.7 billones de USD
+        \item Otros aspectos:
+        \begin{itemize}
+            \item 283.000.000 SLOC
+            \item C, C++, Shell scripts, Java, Perl y LISP son los lenguajes
+            más usados
+            \item Debian 4.0 representa la compilación más grandes de FLOSS
+        \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{¿Por qué Canaima GNU/Linux?}
+
+    \begin{itemize}
+        \item Apalancar el proceso de adopción de Tecnologías Libres en el
+        país.
+        \item Fomentar una estructura organizada de desarrollo nacional.
+        \item Ofrecer soporte técnico de calidad con la ayuda de la comunidad
+        de Software Libre del país.
+        \item Ciclo de desarrollo propio.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Sabores de Canaima GNU/Linux}
+
+    \begin{description}
+        \item[Canaima Educativo] Proveer recursos de aprendizaje que buscan
+        impulsar la interacción entre el niño y el
+        computador\footnote{\href{http://wiki.canaima.softwarelibre.gob.ve/wiki/index.php/Canaima_Educativo}{Más
+        información sobre Canaima Educativo}}.
+        \item[Canaima Accesible] Iniciativa que persigue cubrir
+        los requerimientos de personas con algún tipo de
+        discapacidad\footnote{\href{http://wiki.canaima.softwarelibre.gob.ve/wiki/index.php/Canaima_Accesible}{Más
+        información sobre Canaima Accesible}}.
+        \end{description}
+}
+
+\frame{
+    \frametitle{Sabores de Canaima GNU/Linux}
+
+    \begin{description}
+        \item[Canaima Colibrí] Trabajar en computadoras de bajos recursos sin
+        afectar la facilidad y eficiencia en su uso, es un CD ``en vivo'' lo que
+        permite probar la distribución sin necesidad de
+        instalarla\footnote{\href{http://forja.softwarelibre.gob.ve/projects/colibri/}{Más
+        información sobre Canaima Colibrí}}.
+        \item[Canaima Forense] Dedicada al área de la informática forense,
+        orientada a investigadores
+        policiales\footnote{\href{http://forja.softwarelibre.gob.ve/projects/canaimaforense/}{Más
+        información sobre Canaima Forense}}.
+    \end{description}
+}
+
+\frame{
+    \frametitle{Último lanzamiento de Canaima GNU/Linux: 2.1}
+
+    \begin{itemize}
+        \item Incorporación del paradigma de medios ``vivo'' instalables,
+        tecnología que permite la ejecución de Canaima sin necesidad de alterar
+        el sistema existente. Esta manera de disfrutar Canaima GNU/Linux, se
+        suma a la forma tradicional de instalar permanentemente la distribución
+        en el computador
+        \item Facilidad provista a usuarios de sistemas de operación privativos
+        (tales como Microsoft Windows), la cual ofrece una forma transparente
+        de migración hacia el sistema libre Canaima
+        \end{itemize}
+}
+
+\frame{
+    \frametitle{Último lanzamiento de Canaima GNU/Linux: 2.1}
+
+    \begin{itemize}
+        \item Interfaz gráfica de usuario sencilla para una experiencia
+        mejorada en la partición de disco del computador
+        \item Mejora del sistema de chequeo de disco en el arranque, cuidando
+        la impresión del usuario al momento de esa actividad
+        \item Actualización general de programas informáticos provenientes de
+        la distribución matriz Debian GNU/Linux
+        \item Soporte a las arquitecturas de hardware 32 y 64 \emph{bits}
+    \end{itemize}
+}
+
+\section{Colaborar}
+
+\frame{
+    \frametitle{Cayapa Comunitaria}
+
+    \begin{definicion}
+    Término utilizado por los campesinos para referirse al trabajo que se hace
+    entre muchos sin ánimos de lucro, mayormente para acometer una tarea de la
+    comunidad.
+    \end{definicion}
+}
+
+\frame{
+    \frametitle{Cayapa Canaima}
+
+    \begin{definicion}
+    Es un evento socio-tecnológico, enfocado a tratar una variedad de temas
+    relacionados con el desarrollo de nuevas aplicaciones para la
+    Distribución, corrección de errores, pruebas de nuevos desarrollos de
+    programas informáticos, así como también la discusión de aspectos sociales
+    y tecnológicos involucrados alrededor de la Comunidad de Software Libre.
+    \end{definicion}
+}
+
+\frame{
+    \frametitle{Cayapas Canaima}
+
+    \begin{enumerate}
+        \item Punto Fijo -- Diciembre 2008
+        \item Mérida -- Agosto 2009
+        \item Barquisimeto -- Abril 2010
+        \item \alert{San Juan de los Morros -- Octubre 2010}
+    \end{enumerate}
+}
+
+\frame{
+    \frametitle{¿Necesito ser programador para colaborar en Canaima?}
+
+    El modelo de trabajo del Proyecto Canaima maneja siete (7) roles básicos:
+
+    \begin{itemize}
+        \item Desarrollador
+        \item Relaciones públicas
+        \item Documentador
+        \item Administrador de sistemas
+        \item Facilitador
+        \item Diseñador
+        \item Traductor
+    \end{itemize}
+}
+
+\section{Enlaces}
+
+\frame{
+    \frametitle{Enlaces de interés}
+
+    \begin{itemize}
+        \item
+        \href{http://canaima.softwarelibre.gob.ve:8080/canaima_cms/soporte/descargas/}{Descargas}
+        \item \href{http://canaima.softwarelibre.gob.ve/cms/soporte}{Soporte}
+        \begin{itemize}
+            \item Enciclopedia comunitaria
+            \item Sala de Chat -- IRC
+            \item Listas de correo
+            \item Reporte de errores
+        \end{itemize}
+        \item
+        \href{http://canaima.softwarelibre.gob.ve/cms/unirse-al-proyecto}{Unirse
+        al proyecto}
+        \item
+        \href{http://canaima.softwarelibre.gob.ve:8080/canaima_cms/documentos/FAQ.pdf/at_download/file}{Preguntas
+        de Uso Frecuente}
+    \end{itemize}
+}
+
+
+\frame{
+    \frametitle{¡Muchas Gracias!}
+
+    \begin{description}
+        \item[Nombre] Milton Mazzarri
+        \item[Correo] \href{mailto:milmazz@gmail.com}{milmazz@gmail.com}
+        \item[Blog] \url{http://blog.milmazz.com.ve}
+        \item[Twitter] \url{http://twitter.com/milmazz}
+        \item[Presentaciones] \url{http://www.scribd.com/milmazz}
+    \end{description}
+}
+\end{document}
