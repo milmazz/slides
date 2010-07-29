@@ -1,0 +1,549 @@
+\documentclass{beamer}  
+\mode<presentation>
+{
+\usetheme{JuanLesPins}
+}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+\newtheorem{definicion}[theorem]{Definición}
+\newenvironment{ejemplo}{\begin{exampleblock}{Ejemplo}}{\end{exampleblock}}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\title{Conociendo el \emph{framework Web} Django}
+\subtitle{\emph{Framework Web} para los perfeccionistas con plazos de entrega}
+\author[Milton Mazzarri]{Milton Mazzarri \\
+\href{mailto:milmazz@gmail.com}{milmazz@gmail.com} \\
+}
+\institute[gUsLA, VELUG, Debian-ve]{Grupo de Usuarios de Software Libre de la Universidad de Los
+Andes (gUsLA)\\
+Debian Venezuela\\
+VELUG
+}
+\date{Febrero 26, 2007}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\section{Introducción}
+\frame{
+\frametitle{Conozca Django}
+\alert{Django} es un \emph{framework} de alto nivel para el desarrollo
+Web escrito en \alert{Python} que promueve un desarrollo ágil mientras
+se mantiene un diseño limpio y pragmático.
+}
+
+\section{Python}
+\subsection{Características}
+\begin{frame}
+  \frametitle{¿Qué es Python?}
+  \begin{itemize}[<+->]
+    \item
+      Lenguaje de programación orientado a objetos, interactivo e
+      interpretado.
+    \item
+      Estructuras de datos de alto nivel, dinámicamente tipado.
+    \item
+      Aumenta la productividad de desarrollo en comparación con lenguajes
+      estáticamente tipados.
+    \item
+      Multiplataforma:
+      \begin{itemize}
+        \item
+          El interprete de \alert{CPython} puede ejecutarse nativamente en
+	  muchas plataformas (esto incluye \alert{GNU/Linux}).
+        \item
+          \alert{Jython} corre dentro de \alert{JVM}
+        \item
+          \alert{IronPython} está orientado a plataformas \alert{.Net} y
+	  \alert{Mono}.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Ventajas}
+\begin{frame}
+  \frametitle{¿Por qué usar Python?}
+  \begin{itemize}[<+->]
+    \item
+      Calidad del Software.
+    \item
+      Incrementa la productividad en el desarrollo.
+    \item
+      Portabilidad.
+    \item
+      Integración de componentes.
+    \item
+      Diversión.
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}[fragile]
+%  \frametitle{Zen de Python}
+%  \begin{definicion}
+%    \begin{verbatim}
+%      >>> import this
+%      The Zen of Python, por Tim Peters
+%
+%      Hermoso es mejor que Feo. 
+%      Explícito es mejor que Implícito.
+%      Simple es mejor que Complejo.
+%      Complejo es mejor que Complicado.
+%      Lineal es mejor que Cruzado.
+%      Escaso es mejor que Denso. 
+%      Poder leer el código, cuenta.
+%      Los Casos Especiales no son tan especiales como para romper reglas.
+%      Lo Práctico le gana a Lo Puro.
+%    \end{verbatim}
+%  \end{definicion}
+%\end{frame}
+
+%\begin{frame}[fragile]
+%  \frametitle{Zen de Python}
+%  \begin{definicion}
+%    \begin{verbatim}
+%      Los Errores no deben pasar desapercibidos. 
+%      A menos de que Explícitamente se silencien.
+%      En la ambigüedad, rehusa el Adivinar. 
+%      Sólo debería haber una, y preferiblemente Una, manera obvia de hacer las cosas.
+%      Aunque esa manera no se obvia al principio, a menos que seas (Dutch).
+%      Ahora es mejor que Nunca.
+%      A pesar de que Nunca es mejor que Ahora Mismo.
+%      Si la implementación es difícil de explicar, es probable que sea una mala idea. 
+%      Si la implementación es fácil de explicar, es probable que sea una buena idea.
+%      Namespaces son una Gran idea — Hagamos mas de esas.
+%    \end{verbatim}
+%  \end{definicion}
+%\end{frame}
+
+\subsection{¿Para qué sirve?}
+\begin{frame}
+  \frametitle{Tipo de aplicaciones}
+  \begin{itemize}[<+->]
+    \item
+      Sistemas Operativos
+    \item
+      Interfaces gráficas de usuario
+    \item
+      Internet
+    \item
+      Bases de datos
+    \item
+      Juegos
+    \item
+      Procesamiento de imágenes
+    \item
+      Inteligencia Artificial
+    \item
+      XML
+    \item
+      \ldots
+  \end{itemize}
+\end{frame}
+
+\subsection{Tiene que haber algo malo, ¿no?}
+\begin{frame}
+  \frametitle{El problema de la velocidad}
+  \begin{itemize}[<+->]
+    \item
+      Quizá la única desventaja de \alert{Python} es esa, como está implementado
+      actualmente, la velocidad de ejecución puede no ser tan rápida como la
+      de los lenguajes compilados.
+    \item
+      Puede ser cierto que \alert{Python} presente problemas de velocidad de ejecución
+      respecto a los lenguajes compilados, pero su principal objetivo es la
+      productividad de desarrollo, no la velocidad de procesamiento.
+    \item
+      En aquellos casos donde el rendimiento es crítico, usted puede crear
+      módulos en \alert{C} y luego integrarlos.
+    \item
+      El proyecto \alert{psyco} (\emph{JIT Compiler}) permite mejorar sustancialmente el
+      rendimiento del código \alert{Python}.
+  \end{itemize}
+\end{frame}
+
+\subsection{¿Quienes han tenido el placer de conocerlo?}
+\begin{frame}
+  \frametitle{¿Quienes usan Python?}
+  \begin{itemize}[<+->]
+    \item
+      AstraZeneca
+    \item
+      Honeywell
+    \item
+      Industrial Light \& Magic
+    \item
+      \url{http://www.python.org/about/success/}
+    \item
+      \url{http://www.python.org/about/quotes/}
+  \end{itemize}
+\end{frame}
+
+\subsection{Aplicación de Python en nuestra área de interés}
+\begin{frame}
+  \frametitle{Desarrollo \emph{Web} en Python}
+  \begin{itemize}[<+->]
+    \item
+      Después de varios años, muchas opciones, y sin ningún framework líder, finalmente algunos proyectos comienzan a ganar adeptos.
+      \begin{itemize}
+        \item
+          Zope (Plone)
+        \item
+          TurboGears
+	\item
+	  Pylons
+        \item
+          \alert{Django}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Django}
+\subsection{¿Por qué Django fue desarrollado?}
+\begin{frame}
+  \frametitle{Historia de Django}
+  \begin{itemize}[<+->]
+    \item
+      Originalmente desarrollado para manejar 3 sitios,
+      \href{http://ljworld.com}{LJWorld.com} (noticias),
+      \href{http://lawrence.com}{Lawrence.com} (entretenimiento y
+      música) y \href{http://kusports.com}{KUSports.com} (deportes).
+    \item
+      Adrian Holovaty, Simon Willison, Jacob Kaplan-Moss y Wilson Miner
+      desarrollaron \alert{Django} cuando trabajaban para \alert{World
+      Company} en Lawrence, Kansas. 
+    \item
+      El proyecto comienza \alert{dentro} de la empresa a finales del año
+      2003. Desde el principio el proyecto busca darle solución a los
+      problemas que a diario se les presentaban al equipo principal de
+      desarrollo Web.
+    \item
+      En Julio de 2.005 se libera al público bajo la licencia BSD.
+    \item
+      La versión estable actual es la \alert{0.95.1}. La compatibilidad
+      con versiones anteriores no está garantizada hasta la llegada de
+      la versión \alert{1.0}.
+  \end{itemize}
+\end{frame}
+
+\subsection{Filosofía de diseño}
+\begin{frame}
+\frametitle{Filosofía de diseño}
+\begin{itemize}
+\item<1-> \alert{Acoplamiento}: Grado de mutua interdependencia entre de
+módulos/componentes. Bajo acoplamiento es mejor.
+\item<2-> \alert{Cohesión} Grado de responsabilidades que forman una unidad
+significativa en un módulo/componente. Mayor cohesión es mejor.
+\item<3-> \alert{Menos código} Las aplicaciones en Django usan la menor cantidad de
+código posible. Django aprovecha las ventajas que ofrece el lenguaje Python.
+\item<4-> \alert{Desarrollo ágil} La idea de los \alert{frameworks} del siglo XXI es
+hacer los aspectos tediosos del desarrollo Web rápidos.
+\item<5->\alert{DRY} \emph{Don't Repeat Yourself}
+\item<6-> \alert{Explícito es mejor que implícito} Principio fundamental del núcleo del
+lenguaje \alert{Python}.
+\item<7-> Consistencia.
+\end{itemize}
+\end{frame}
+
+
+\subsection{Algunos casos específicos de uso}
+\frame{
+  \frametitle{¿Quienes usan Django?}
+  \begin{itemize}[<+->]
+    \item
+      World Online usa \alert{Django} en todos sus sitios, tanto
+      para sitios internos como clientes.
+      \begin{itemize}
+        \item 
+	  \url{http://www.lawrence.com/}
+	\item
+          \url{http://www.6newslawrence.com/}
+        \item
+	  \url{http://www.visitlawrence.com/}
+        \item
+	  \url{http://www.lawrencechamber.com/}
+        \item
+	  \url{http://www2.kusports.com/stats/}
+      \end{itemize}
+    \item
+      \href{http://washingtonpost.com}{Washington Post} usa Django en
+      algunos de sus proyectos, algunos ejemplos son los siguientes:
+      \begin{itemize}
+        \item
+	  \url{http://projects.washingtonpost.com/congress/}
+	\item
+	  \url{http://projects.washingtonpost.com/fallen/}
+      \end{itemize}
+  \end{itemize}
+}
+
+%\subsection{Algunos casos específicos de uso}
+\frame{
+  \frametitle{¿Quienes usan Django?}
+  \begin{itemize}[<+->]
+    \item
+      \url{http://chicagocrime.org}, permite acceder libremente a la
+      base de datos de crimenes reportados en Chicago (EEUU), usa de
+      manera original el API de \alert{Google Maps}.
+    \item
+      \url{http://tabblo.com}, un innovador sitio para compartir
+      fotografías, al estilo de \href{http://flickr.com/}{Flickr}.
+    \item
+      \url{grono.net}, una red social de más de 450.000 usuarios en
+      Polonia, se reemplazó el código en \alert{Java} por \alert{Django}. Los
+      desarrolladores encontraron no solo un mayor rendimiento en la
+      aplicación , sino que era divertido trabajar en Django, además,
+      requería de menos \emph{hardware}.
+  \end{itemize}
+}
+
+%\subsection{Algunos casos específicos de uso}
+\frame{
+  \frametitle{¿Quienes usan Django?}
+  \begin{itemize}[<+->]
+    \item
+      \url{traincheck.com}, el sitio le permite enviar mensajes de texto
+      desde su móvil celular con el fin de obtener información acerca de
+      los horarios del tren subterráneo en su localidad.
+    \item
+      Una lista completa y actualizada de los sitios que utilizan
+      \alert{Django} puede encontrarla en
+      \url{http://code.djangoproject.com/wiki/DjangoPoweredSites}
+  \end{itemize}
+}
+
+\subsection{El origen del nombre del proyecto}
+\begin{frame}
+  \frametitle{¿Qué significa Django?}
+  \begin{itemize}[<+->]
+    \item
+      El nombre del framework se da en honor a \alert{Django Reinhardt}, gitano cuya profesión 
+      fue ser guitarrista de Jazz a partir de los años 30 hasta el comienzo de la década 
+      de los 50. Actualmente es considerado uno de los mejores guitarristas de todos los tiempos.
+    \item
+      De acuerdo a la sección de
+      \href{http://www.djangoproject.com/documentation/faq/}{preguntas
+      frecuentes} del proyecto, \alert{Django} se pronuncia
+      \alert{JANG-oh}, la letra \alert{D} la obviáremos.
+  \end{itemize}
+\end{frame}
+
+%\subsection{El origen del nombre del proyecto}
+\begin{frame}
+  \frametitle{¿Qué significa Django?}
+  \begin{itemize}[<+->]
+    \item
+      Adrian Holovaty, uno de los creadores del framework, le gusta tocar guitarra, quizá esto 
+      pudo haber influido directamente en el nombre del proyecto.
+    \item
+      Si llega a convertirse en un aficionado de Django, seguramente le gustaría conocer acerca 
+      de la lista de otros nombres que consideraron para el proyecto,
+      lea el artículo escrito por Jacob Kaplan-Moss, 
+      \href{http://www.jacobian.org/writing/2005/sep/09/private_dancer/}{Private
+      Dancer?}
+  \end{itemize}
+\end{frame}
+
+\subsection{Primeros pasos}
+\begin{frame}
+  \frametitle{¿Cómo comenzar?}
+  \begin{itemize}[<+->]
+    \item
+      Sitio principal: \url{http://www.djangoproject.com}
+    \item
+      Grupos en Google:
+      \begin{description}
+        \item
+	  [users] Grupo de desarrolladores que utilizan
+	  \alert{Django} para construir sitios web.
+	  \url{http://groups.google.com/group/django-users}
+        \item
+	  [developers] Grupo de usuarios que activamente trabajan con
+	  el código de \alert{Django}.
+	  \url{http://groups.google.com/group/django-developers}
+      \end{description}
+    \item
+      Usted puede obtener información acerca del repositorio \alert{SVN}
+      y cómo enviar correcciones al código en el sitio:
+      \url{http://code.djangoproject.com/}
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}
+%\frametile{Recursos en español}
+%\begin{itemize}[<+->]
+%\item
+%Listas de correo:
+%\begin{itemize}
+%\item
+%          http://listas.aditel.org/listinfo/python-es
+%\item
+%          http://python.org.ve/mailman/listinfo/pyve
+%\end{itemize}
+%\item
+%    IRC:
+%\begin{itemize}
+%\item
+%          #python-es en Freenode
+%\item
+%          #python-ve en Freenode
+%\end{itemize}
+%\end{itemize}
+%\end{frame}
+
+\subsection{Instalación de Django}
+\begin{frame}[fragile]
+  \frametitle{Versión oficial}
+  \begin{itemize}[<+->]
+    \item
+      La versión oficial más reciente la obtenemos desde
+      \url{http://www.djangoproject.com/download/}
+    \item
+      \alert{Django} usa el método de instalación estándar en
+      \alert{Python}: \texttt{distutils}
+  \end{itemize}
+  \begin{ejemplo}<3->
+    \begin{verbatim}
+      $ tar xvzf Django-*.tar.gz
+      $ cd Django-*
+      $ sudo python setup.py install
+    \end{verbatim}
+  \end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Django desde subversion}
+  \begin{ejemplo}
+    \begin{verbatim}
+      $ sudo aptitude install subversion
+      $ svn co\
+      http://code.djangoproject.com/svn/django/trunk\
+      django_src
+      $ sudo ln -s `pwd`/django_src/django\
+      /usr/lib/python2.4/site-packages/django
+      $ sudo update-alternatives \
+      /usr/bin/django-admin.py \
+      django-admin.py \
+      /usr/lib/.../.../django/bin/django-admin.py 10
+    \end{verbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Estableciendo una base de datos}
+\frame{
+  \frametitle{Bases de datos}
+  \begin{itemize}[<+->]
+    \item
+      El único pre-requisito de Django es tener instalado Python. Sin
+      embargo, es muy probable que necesitemos almacenar nuestros datos en
+      una base de datos.
+    \item
+      Django soporta cinco (5) Sistemas de Gestión de Bases de Datos.
+      \begin{itemize}
+        \item
+	  PostgreSQL
+	\item
+	  SQLite 3
+	\item
+	  MySQL
+	\item
+	  Microsoft SQL Server
+	\item
+	  Oracle
+      \end{itemize}
+  \end{itemize}
+}
+
+\subsection{Usando Django con PostgreSQL}
+\begin{frame}[fragile]
+  \frametitle{Trabajando con PostgreSQL}
+  \begin{ejemplo}
+    \begin{verbatim}
+      $ sudo aptitude install postgresql\
+      python-psycopg 
+    \end{verbatim}
+  \end{ejemplo}
+\end{frame}
+
+\section{Demostración}
+\begin{frame}
+  \frametitle{Ahora comienza la diversión}
+  \begin{itemize}[<+->]
+    \item
+      Iniciando un proyecto
+    \item
+      Conociendo la estructura del proyecto
+    \item
+      Servidor de pruebas
+    \item
+      Configuración del proyecto
+    \item
+      Sincronizando la base de datos
+  \end{itemize}
+\end{frame}
+
+\section{Demostración}
+\begin{frame}
+  \frametitle{Ahora comienza la diversión}
+  \begin{itemize}[<+->]
+    \item
+      Analizando el contenido de la Base de Datos
+    \item
+      Proyecto vs. Aplicación
+    \item
+      Creación de la aplicación
+    \item
+      Definiendo nuestro modelo
+    \item
+      Activando nuestra aplicación
+  \end{itemize}
+\end{frame}
+
+\section{Demostración}
+\begin{frame}
+  \frametitle{Ahora comienza la diversión}
+  \begin{itemize}[<+->]
+    \item
+      Activar la interfaz administrativa
+    \item
+      Estableciendo las URL
+    \item
+      Uso de \alert{Generic View}
+    \item
+      Plantillas
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{¡Gracias!}
+  \begin{description}
+    \item
+      [Nombre:] Milton Mazzarri
+    \item
+      [IRC:] \alert{milmazz} en \alert{irc.freenode.net}, \alert{milmazz}
+      en \alert{irc.oftc.net}
+    \item 
+      [blog:] \url{http://www.milmazz.com}
+    \item
+      [e-mail:]
+      \href{mailto:milmazz@debian.org.ve}{milmazz@debian.org.ve}
+  \end{description}
+\end{frame}
+
+
+% preguntas frecuentes
+% generic views
+% MTV (Model-Template-View)
+% demostracion
+% configuracion del proyecto
+% establecimiento del modelo de datos
+% urls.py
+% generic views
+
+\end{document}
