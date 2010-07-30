@@ -1,60 +1,64 @@
+% Copyright (c) 2010 Milton Mazzarri <milmazz@gmail.com>
+% All rights reserved.
+% 
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+% 1. Redistributions of source code must retain the above copyright
+%    notice, this list of conditions and the following disclaimer.
+% 2. Redistributions in binary form must reproduce the above copyright
+%    notice, this list of conditions and the following disclaimer in the
+%    documentation and/or other materials provided with the distribution.
+% 3. The name of the author may not be used to endorse or promote products
+%    derived from this software without specific prior written permission.
+% 
+% THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+% IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+% OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+% IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+% NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+% DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+% THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+% (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+% THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 \documentclass{beamer}
 
-% Uso de estilos en beamer
-%\usetheme{Frankfurt}
-%\usetheme{JuanLesPins}
-\usetheme{Darmstadt}
- %AnnArbor
- %Antibes
- %Berlin
- %Boadilla
- %Copenhagen
- %Darmstadt
- %default
- %Dresden
- %Frankfurt
- %Hannover
- %Ilmenau
- %JuanLesPins
- %Madrid
- %Rochester
- %Warsaw
- %}
-\useoutertheme{}
-\useinnertheme{}
-\usefonttheme{}
-\usecolortheme{}
-%beaver
-%beetle
-%crane
-%default
-%dolphin
-%dove
-%fly
-%seagull
-%sidebartab
-
-%\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth,height=\paperheight]{pix/bg}}
-
-% Desactivar la barra de navegacion
-%\setbeamertemplate{navigation symbols}{}
+\mode<presentation>
+{
+  \usetheme{Darmstadt}
+  \setbeamercovered{transparent}
+  \useoutertheme{tree}
+  \useinnertheme{rounded}
+}
 
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
 
 % Redefinicion de teorema, definicion, ejemplo
 \newtheorem{teorema}[theorem]{Teorema}
 \newtheorem{definicion}[theorem]{Definición}
 \newenvironment{ejemplo}{\begin{exampleblock}{Ejemplo}}{\end{exampleblock}}
 
+ \AtBeginSection[]
+{
+  \begin{frame}<beamer>[allowframebreaks]{Contenido}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
 \title{Maestro Virtual}
 \subtitle{Novela gráfica creada con el motor Ren'Py}
 \author[Milton Mazzarri]{Milton Mazzarri \\
 \href{mailto:milmazz@gmail.com}{milmazz@gmail.com} \\
 }
-\institute[gUsLA]{Grupo de Usuarios de Software Libre de la Universidad de Los Andes \\
+\institute[gUsLA]{Grupo de Usuarios de Software Libre de la Universidad de Los Andes}
 %
-\date{11 de Julio del 2008}
+\date{11 de Julio de 2008}
 
 \hypersetup{colorlinks=true,linkcolor=blue}
 
@@ -62,6 +66,8 @@
 pdfauthor={Milton R. Mazzarri S.},
 pdftitle={Maestro Virtual: Novela gráfica creada con el motor Ren'Py}
 }
+
+\beamerdefaultoverlayspecification{<+->}
 
 \begin{document}
 
@@ -72,61 +78,77 @@ pdftitle={Maestro Virtual: Novela gráfica creada con el motor Ren'Py}
 \section{Maestro Virtual}
 
 \subsection{Origen}
+
 \frame{
   \frametitle{El origen del proyecto}
 
   \begin{itemize}
     \item
-      El \alert{Maestro Virtual} nace como colaboración con el proyecto educativo del grupo de investigación en Sistemología Interpretativa de la Universidad de Los Andes.
+      El \alert{Maestro Virtual} nace como colaboración con el proyecto
+      educativo del grupo de investigación en Sistemología Interpretativa de la
+      Universidad de Los Andes.
     \item
-      El proyecto educativo está basado en la enseñanza a los niños a través de narraciones.
+      El proyecto educativo está basado en la enseñanza a los niños a través de
+      narraciones.
     \item
-      La estrategia es incluir los contenidos en el mismo cuento, aprovechando la narración de sucesos para incluir actividades de enseñanza. 
+      La estrategia es incluir los contenidos en el mismo cuento, aprovechando
+      la narración de sucesos para incluir actividades de enseñanza. 
     \item
       El propósito es hacer uso del conocimiento para enriquecer la historia.
   \end{itemize}
 }
 
-\subsection{El contenido}
+\subsection{Contenidos}
+
 \frame{
   \frametitle{El contenido de los cuentos}
 
   \begin{itemize}
     \item
-      La Dra. Miriam Villarreal (ULA) diseñó los contenidos que dicen paso a paso como realizar las actividades en torno al cuento. 
+      La Dra. Miriam Villarreal (ULA) diseñó los contenidos que dicen paso a
+      paso como realizar las actividades en torno al cuento. 
     \item
       En este caso, \emph{El Príncipe Feliz} de Oscar Wilde.
     \item
-      El diseño del cuento de \emph{El Príncipe Feliz} permitió crear una guía para niños de quinto grado de primaria.
+      El diseño del cuento de \emph{El Príncipe Feliz} permitió crear una guía
+      para niños de quinto grado de primaria.
   \end{itemize}
 }
 
 \subsection{Uso de Tecnología de Información}
+
 \frame{
   \frametitle{Inclusión de tecnologías de información}
 
   \begin{itemize}
     \item
-      El proyecto \alert{Maestro Virtual} pretende desarrollar una aplicación de \emph{software} cuyo guión sea el contenido para quinto grado diseñado sobre el cuento \emph{El Príncipe feliz}.
+      El proyecto \alert{Maestro Virtual} pretende desarrollar una aplicación
+      de \emph{software} cuyo guión sea el contenido para quinto grado diseñado
+      sobre el cuento \emph{El Príncipe feliz}.
     \item
-      Para lograr esto se comenzó a observar y estudiar los principios educativos en torno al proyecto educativo, seguido de una investigación acerca de las herramientas \alert{libres} existentes para poder desarrollar la aplicación de manera que exista una interacción entre el niño y la máquina.
+      Para lograr esto se comenzó a observar y estudiar los principios
+      educativos en torno al proyecto educativo, seguido de una investigación
+      acerca de las herramientas \alert{libres} existentes para poder
+      desarrollar la aplicación de manera que exista una interacción entre el
+      niño y la máquina.
     \item
-      El \emph{software} \alert{Maestro Virtual} no pretende sustituir al maestro, será un apoyo. El hecho de usar el computador como herramienta atraerá la atención del niño.
+      El \emph{software} \alert{Maestro Virtual} no pretende sustituir al
+      maestro, será un apoyo. El hecho de usar el computador como herramienta
+      atraerá la atención del niño.
   \end{itemize}
 }
 
-% TODO
-%\section{Novelas gráficas}
-
 \section{Ren'Py}
 
-\subsection{Engine de Ren'Py}
+\subsection{Motor de Ren'Py}
+
 \frame{
   \frametitle{Ren'Py: ¿Qué es exactamente?}
 
   \begin{itemize}
     \item
-      Es un motor que soporta la creación de novelas gráficas, simuladores de citas y distintas formas de contar historias a través de un ordenador.
+      Es un motor que soporta la creación de novelas gráficas, simuladores de
+      citas y distintas formas de contar historias a través de un ordenador.
     \item
       El motor permite crear novelas personalizables y flexibles.
     \item
@@ -148,17 +170,20 @@ pdftitle={Maestro Virtual: Novela gráfica creada con el motor Ren'Py}
 
 \subsection{Funcionalidades}
 \begin{frame}[fragile]
-  \frametitle{Dialogos, Narraciones y Lógica de la novela}
+  \frametitle{Diálogos, Narraciones y Lógica de la novela}
 
   \begin{itemize}
-    \item
-      La sintaxis de las novelas gráficas usando Ren'Py son muy similares al formato de un guion de una película.
-    \item
-      Ren'Py necesita de poco código para que tus personajes realmente digan algo.
+    \item<1->
+      La sintaxis de las novelas gráficas usando Ren'Py son muy similares al
+      formato de un guion de una película.
+    \item<2->
+      Ren'Py necesita de poco código para que tus personajes realmente digan
+      algo.
   \end{itemize}
 
   \begin{ejemplo}<3->
-\begin{verbatim}
+\begin{semiverbatim}
+\tiny
 # script.rpy
 init:
     $ pebbels = Character("Pebbels", color="#c8ffc8")
@@ -167,22 +192,27 @@ label start
     "Hace un año..."
     pebbels "Gazoo"
     "Bamm-Bamm" "Bam Bam..."
-\end{verbatim}
+\end{semiverbatim}
   \end{ejemplo}
 \end{frame}
 
 \frame{
-  \frametitle{Dialogos, Narraciones y Lógica de la novela}
+  \frametitle{Diálogos, Narraciones y Lógica de la novela}
  
   \begin{itemize}
     \item
-      En los scripts de Ren'Py los personajes están referenciados por nombre, no por número.
+      En los scripts de Ren'Py los personajes están referenciados por nombre,
+      no por número.
     \item
-      Ren'Py ajusta el texto de las narraciones o dialogos para que encaje en la proyección de pantalla.
+      Ren'Py ajusta el texto de las narraciones o diálogos para que encaje en
+      la proyección de pantalla.
     \item
-      La lógica de la novela puede ser basada en menu de opciones o variables, de ese modo una novela gráfica puede tener N finales, mejorando la experiencia del usuario.
+      La lógica de la novela puede ser basada en menú de opciones o variables,
+      de ese modo una novela gráfica puede tener N finales, mejorando la
+      experiencia del usuario.
     \item
-      La presentación de las narraciones es \alert{totalmente} personalizable, ubicación, colores, estilos, fuentes tipográficas, imágenes.
+      La presentación de las narraciones es \alert{totalmente} personalizable,
+      ubicación, colores, estilos, fuentes tipográficas, imágenes.
     \item
       El texto puede incluir etiquetas.
   \end{itemize} 
@@ -199,7 +229,8 @@ label start
     \item
       Interacción con el mouse, teclado y \alert{joystick}.
     \item
-      Puede programar el avance automático de las escenas, de ese modo los usuarios no necesitan dar click para avanzar.
+      Puede programar el avance automático de las escenas, de ese modo los
+      usuarios no necesitan dar clic para avanzar.
   \end{itemize}
 }
 
@@ -212,9 +243,10 @@ label start
     \item
       Un número ilimitado de imágenes puede ser mostradas en una escena.
     \item
-      Se pueden reproducir videos \texttt{mpeg1}.
+      Se pueden reproducir vídeos \texttt{mpeg1}.
     \item
-      Soporta la precarga de imágenes, de ese modo se evitan los retardos en la presentación de las escenas.
+      Soporta la precarga de imágenes, de ese modo se evitan los retardos en la
+      presentación de las escenas.
     \item
       Proporciona efectos en las transiciones de las escenas.
   \end{itemize}
@@ -229,7 +261,7 @@ label start
     \item
       Efectos aparecer/desvanecer progresiva de audio.
     \item
-      Soporte para voces (actuación de los dialogos y narraciones).
+      Soporte para voces (actuación de los diálogos y narraciones).
     \item
       Efectos de sonido, música y voces puede reproducirse simultáneamente.
   \end{itemize}
@@ -240,13 +272,18 @@ label start
 
   \begin{itemize}
     \item
-      Soporta Linux, Mac y el \emph{innombrable}. Soporte para otras plataformas es posible.
+      Soporta Linux, Mac y el \emph{innombrable}. Soporte para otras
+      plataformas es posible.
     \item
-      Ren'Py es distribuido bajo la licencia MIT, eso quiere decir que puede vender las novelas hechas sin necesidad de pagar por Ren'Py. La distribución libre obviamente es permitida.
+      Ren'Py es distribuido bajo la licencia MIT, eso quiere decir que puede
+      vender las novelas hechas sin necesidad de pagar por Ren'Py. La
+      distribución libre obviamente es permitida.
     \item
-      Los script de Ren'Py puede ser ofuscados para su distribución, haciendo dificil la lectura o modificación del código fuente.
+      Los scripts de Ren'Py puede ser ofuscados para su distribución, haciendo
+      difícil la lectura o modificación del código fuente.
     \item
-      Los ficheros de medios pueden ser archivados para la distribución de tal modo que sea dificil acceder a los ficheros individualmente.
+      Los ficheros de medios pueden ser archivados para la distribución de tal
+      modo que sea difícil acceder a los ficheros individualmente.
   \end{itemize}  
 }
 
@@ -259,7 +296,8 @@ label start
   \begin{column}{5cm}
     \begin{itemize}
       \item<1->
-        La distribución de Ren'Py viene con un lanzador que le ayuda a comenzar y manejar sus proyectos.
+        La distribución de Ren'Py viene con un lanzador que le ayuda a comenzar
+        y manejar sus proyectos.
       \item<3->
         Ren'Py le ofrece algunas plantillas para facilitarle el comienzo.
       \item<5->
@@ -284,11 +322,15 @@ label start
 
   \begin{itemize}[<+->]
       \item
-        Los foros de \href{http://lemmasoft.renai.us/forums/viewforum.php?f=8}{Lemmasoft} le pueden ayudar en el desarrollo de las novelas.
+        Los foros de
+        \href{http://lemmasoft.renai.us/forums/viewforum.php?f=8}{Lemmasoft} le
+        pueden ayudar en el desarrollo de las novelas.
       \item
-        Ayuda en línea en el canal IRC \alert{\#renpy} en \href{http://freenode.net/}{freenode.net}
+        Ayuda en línea en el canal IRC \alert{\#renpy} en
+        \href{http://freenode.net/}{freenode.net}
       \item
-        Revisión del código fuente disponible para las novelas gráficas. Hasta ahora son más de \alert{110} novelas hechas con Ren'Py.
+        Revisión del código fuente disponible para las novelas gráficas. Hasta
+        ahora son más de \alert{110} novelas hechas con Ren'Py.
   \end{itemize}
 }
 
@@ -298,19 +340,28 @@ label start
 
   Hasta ahora los involucrados en el Proyecto \alert{Maestro Virtual} son:
 
-  \begin{itemize}
+  \begin{itemize}[<1->]
     \item
-      José Aguilar -- \href{mailto:jaguilar@cenditel.gob.ve}{jaguilar@cenditel.gob.ve} -- Asesor 
+      José Aguilar --
+      \href{mailto:jaguilar@cenditel.gob.ve}{jaguilar@cenditel.gob.ve} --
+      Asesor 
     \item
       Ramsés Fuenmayor -- \href{ramsesfa@ula.ve}{ramsesfa@ula.ve} -- Asesor
     \item
-      Ana Rangel -- \href{mailto:arangel@cenditel.gob.ve}{arangel@cenditel.gob.ve} -- Investigación, voces.
+      Ana Rangel --
+      \href{mailto:arangel@cenditel.gob.ve}{arangel@cenditel.gob.ve} --
+      Investigación, voces.
     \item
-      Luz Mairet Chourio \href{mailto:lchourio@cenditel.gob.ve}{lchourio@cenditel.gob.ve} -- Investigación.
+      Luz Mairet Chourio
+      \href{mailto:lchourio@cenditel.gob.ve}{lchourio@cenditel.gob.ve} --
+      Investigación.
     \item
-      Iván Dario Hernández -- \href{mailto:ivandarioh@yahoo.es}{ivandarioh@yahoo.es} -- Arte.
+      Iván Dario Hernández --
+      \href{mailto:ivandarioh@yahoo.es}{ivandarioh@yahoo.es} -- Arte.
     \item
-      Milton Mazzarri -- \href{mailto:milmazz@milmazz.com.ve}{milmazz@milmazz.com.ve} -- Programador, voces.
+      Milton Mazzarri --
+      \href{mailto:milmazz@gmail.com}{milmazz@gmail.com} --
+      Programador, voces.
   \end{itemize}  
 }
 
@@ -331,21 +382,47 @@ label start
       \item<4->
         Audacity
       \item<5->
-        Scite
-      \item<6->
         Vim
     \end{itemize}
   \end{column}
 
   \begin{column}{5cm}
     \begin{overprint}
+      \includegraphics<1>{pix/renpy}
       \includegraphics<2>{pix/wilber}
+      \includegraphics<3>{pix/inkscape}
       \includegraphics<4>{pix/audacity}
-      \includegraphics<6>{pix/vim}
+      \includegraphics<5>{pix/vim}
     \end{overprint}
   \end{column}
   \end{columns}
 }
 
-% TODO: Colocar el portal del svn, trac, lista de distribución, etc.
+\section{Enlaces de interés}
+
+\frame{
+    \frametitle{Enlaces de interés}
+
+    \begin{itemize}
+        \item Seguimiento del Proyecto:
+        \url{http://maestro.cenditel.gob.ve/trac/}
+        \item Código fuente:
+        \url{http://maestro.cenditel.gob.ve/svn/renpy-maestrovirtual}
+        \item Lista de discusión:
+        \url{http://listas.cenditel.gob.ve/listinfo/maestrovirtual}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{¡Muchas Gracias!}
+
+    \begin{description}[<1->]
+        \item[Nombre] Milton Mazzarri
+        \item[Correo] \href{mailto:milmazz@gmail.com}{milmazz@gmail.com}
+        \item[Blog] \url{http://blog.milmazz.com.ve}
+        \item[Twitter] \url{http://twitter.com/milmazz}
+        \item[Presentaciones] \url{http://www.scribd.com/milmazz}
+    \end{description}
+}
+
 \end{document}
