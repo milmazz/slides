@@ -1,0 +1,364 @@
+% Copyright (c) 2010 Milton Mazzarri <milmazz@gmail.com>
+% All rights reserved.
+%
+% Redistribution and use in source and binary forms, with or without
+% modification, are permitted provided that the following conditions
+% are met:
+% 1. Redistributions of source code must retain the above copyright
+%    notice, this list of conditions and the following disclaimer.
+% 2. Redistributions in binary form must reproduce the above copyright
+%    notice, this list of conditions and the following disclaimer in the
+%    documentation and/or other materials provided with the distribution.
+% 3. The name of the author may not be used to endorse or promote products
+%    derived from this software without specific prior written permission.
+%
+% THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+% IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+% OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+% IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+% INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+% NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+% DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+% THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+% (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+% THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+\documentclass{beamer}
+
+\usetheme{JuanLesPins}
+ %AnnArbor
+ %Antibes
+ %Berlin
+ %Boadilla
+ %Copenhagen
+ %Darmstadt
+ %default
+ %Dresden
+ %Frankfurt
+ %Hannover
+ %Ilmenau
+ %JuanLesPins
+ %Madrid
+ %Rochester
+ %Warsaw
+\useoutertheme{}
+%default
+%infolines
+%miniframes
+%shadow
+%sidebar
+%smoothbars
+%smooththtree
+%split
+%tree
+\useinnertheme{}
+%circles
+%default
+%inmargin
+%rectangles
+%rounded
+\usefonttheme{}
+%default
+%professionalfonts
+%serif
+%estructurebold
+%estructureitalicserif
+%estructuresmallcapsserif
+\usecolortheme{}
+%batross
+%beaver
+%beetle
+%crane
+%default
+%dolphin
+%dove
+%fly
+%lily
+%orchid
+%rose
+%seagull
+%seahorse
+%sidebartab
+%structure
+%whale
+%wolverine
+
+% Desactivar la barra de navegacion
+%\setbeamertemplate{navigation symbols}{}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+% Redefinicion de teorema, definicion, ejemplo
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definición}
+\newtheorem{ejemplo}{Ejemplo}
+
+\hypersetup{colorlinks=true,linkcolor=red}
+
+\title[\texttt{dbconfig-common}]{Mejores prácticas para el \\
+empaquetamiento de aplicaciones Debian}
+\subtitle{\texttt{dbconfig-common}}
+\author[Milton Mazzarri]{Milton Mazzarri \\
+\href{mailto:milmazz@gmail.com}{milmazz@gmail.com}
+}
+\institute[PDVSA]{Petróleos de Venezuela, S.A.}
+\date{25 de Agosto de 2008}
+
+\begin{document}
+
+\begin{frame}[plain,label=intro]
+\titlepage
+\end{frame}
+
+\section{Usando \texttt{dbconfig-common} en sus paquetes}
+
+\frame
+{
+  \frametitle{Resumen de actividades}
+
+  \begin{itemize}
+    \item
+      Proveer el \emph{script} o código para establecer la base de datos.
+    \item
+      Enlazar con los \emph{scripts} del mantenedor de la biblioteca.
+    \item
+      Ejecutar \texttt{dbconfig-common}.
+  \end{itemize}
+}
+
+\frame
+{
+	\frametitle{Beneficios de utilizar \texttt{dbconfig-common}}
+
+    \texttt{dbconfig-common} se encargará de todas las preguntas relacionadas
+    con \texttt{debconf}.
+
+  \begin{itemize}
+    \item
+      Creación de bases de datos.
+    \item
+      Creación de usuarios de bases de datos.
+    \item
+      Actualizar, remover, purgar la lógica.
+    \item
+      En resumen, \texttt{dbconfig-common} se encargará de hacerle fácil la
+      vida al administrador local y al mantenedor del paquete.
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Enlazando las bibliotecas que harán el trabajo}
+
+  \begin{itemize}
+    \item
+      Los \emph{scripts} \texttt{config}, \texttt{postinst}, \texttt{prerm},
+      \texttt{postrm} del paquete deberá enlazarlos con las bibliotecas que
+      harán el trabajo por usted.
+    \item
+      El paso anterior no necesita hacerlo en el \emph{script}
+      \texttt{preinst}.
+    \item
+      Si su paquete no está usando \texttt{debconf}, lo hará ahora, las
+      bibliotecas de \texttt{debconf} deberá enlazarlas primero.
+    \item
+      Deberá activar en el fichero \texttt{rules} el asistente \emph{debhelper}
+      \texttt{dh\_installdebconf}.
+  \end{itemize}
+}
+
+\begin{frame}[fragile]
+  \frametitle{Creando nuestro primer paquete con \texttt{dbconfig-common}}
+
+  \begin{ejemplo}
+    \begin{verbatim}
+$ ls .
+  dbconfig_test-0.1
+  dbconfig_test-0.1.orig.tar.gz
+$ ls dbconfig_test-0.1/
+  pgsql.sql
+$ cd dbconfig_test-0.1
+$ dh_make -e milmazz@gmail.com -p dbconfig-test
+    \end{verbatim}
+  \end{ejemplo}
+\end{frame}
+
+\section{Directorio \texttt{debian}}
+\subsection{Fichero \texttt{changelog}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  Para esto nos ubicamos dentro del directorio \texttt{debian}.
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat changelog }
+  dbconfig-test (0.1-1) unstable; urgency=low
+
+   * Versión inicial.
+
+ -- Milton R. Mazzarri S. <milmazz@gmail.com>  Tue, 19 Aug 2008 08:21:09 -0430
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{control}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat control}
+Source: dbconfig-test
+Section: misc
+Priority: optional
+Maintainer: Milton R. Mazzarri S. <milmazz@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+Homepage: http://www.milmazz.com.ve
+
+Package: dbconfig-test
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, \textbf{dbconfig-common}
+Description: Paquete de demostración para el taller
+ Demostración de dbconfig-common para el taller.
+    \end{semiverbatim}
+\end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{install}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat install}
+pgsql.sql /usr/share/dbconfig-common/data/dbconfig-test/install/pgsql
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{config}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat config}
+#!/bin/sh
+
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+  . /usr/share/debconf/confmodule
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/config.pgsql ]; then
+  . /usr/share/dbconfig-common/dpkg/config.pgsql
+fi
+
+dbc_dbuser="galba"
+dbc_dbname="galba"
+dbc_go dbconfig-test $@
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{postinst}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat postinst }
+#!/bin/sh
+
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+  . /usr/share/debconf/confmodule
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/postinst.pgsql ]; then
+  . /usr/share/dbconfig-common/dpkg/postinst.pgsql
+fi
+
+dbc_pgsql_createdb_encoding=\"UTF8"
+dbc_go dbconfig-test $@
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{postrm}}
+
+\begin{frame}[fragile]
+
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat postrm}
+#!/bin/sh
+
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+  . /usr/share/debconf/confmodule
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/postrm.pgsql ]; then
+  . /usr/share/dbconfig-common/dpkg/postrm.pgsql
+fi
+
+dbc_go dbconfig-test $@
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{prerm}}
+
+\begin{frame}[fragile]
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{ejemplo}
+    \begin{semiverbatim}
+\tiny{$ cat prerm}
+#!/bin/sh
+
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+  . /usr/share/debconf/confmodule
+fi
+
+if [ -f /usr/share/dbconfig-common/dpkg/prerm.pgsql ]; then
+  . /usr/share/dbconfig-common/dpkg/prerm.pgsql
+fi
+
+dbc_go dbconfig-test $@
+    \end{semiverbatim}
+  \end{ejemplo}
+\end{frame}
+
+\subsection{Fichero \texttt{rules}}
+
+\begin{frame}
+
+  \frametitle{Editando los ficheros creados por \texttt{debhelper}}
+
+  \begin{itemize}
+    \item
+      Habilitar la variable de ambiente \texttt{DH\_VERBOSE=1}.
+    \item
+      Activar la opción \texttt{dh\_installdebconf} en la sección \texttt{binary-arch}.
+  \end{itemize}
+\end{frame}
+
+\end{document}
