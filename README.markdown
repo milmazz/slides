@@ -26,6 +26,21 @@ y mejoran la calidad del software que se desarrolla.
  * *Canaima GNU/Linux, una introducción*, se describe la historia, definición
 del proyecto [Canaima], principales características, procesos para colaborar,
 enlaces de interés, entre otros.
+ * *Uso de dbconfig-common*, presentación que es parte de la serie *Mejores
+prácticas para el empaquetamiento de aplicaciones en Debian*, se describe el
+uso de la herramienta y su respectiva integración con el asistente
+**debhelper**
+ * *Conociendo el framework web Django*, introducción, historia,
+características, primeros pasos, instalación y demostración de desarrollo de
+una aplicación sencilla bajo este excelente framework basado en el lenguaje de
+Programación [Python][]
+ * *Novela gráfica creada con el motor Ren'Py*, se relata la experiencia del
+desarrollo de una novela gráfica para niños de 5to. grado de educación, de
+acuerdo a currículo impartido en las escuelas venezolanas.
+ * *Trac*, herramientas libres para el apoyo en el proceso de desarrollo de
+software, se discute las características y funcionalidades que ofrece el
+software. Además del proceso de personalización por medio de complementos o
+plugins.
 
 Convertir las fuentes .tex a PDF
 --------------------------------
@@ -60,3 +75,4 @@ Finalmente, podrá generar la presentación de la siguiente manera:
 [Sphinx]: http://sphinx.pocoo.org/ 'Sphinx – Python Documentation Generator'
 [Git]: http://git-scm.com/ 'Git - the fast version control system'
 [Canaima]: http://canaima.softwarelibre.gob.ve 'Canaima GNU/Linux'
+[Python]: http://www.python.org
