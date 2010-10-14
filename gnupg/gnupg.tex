@@ -1,0 +1,365 @@
+\documentclass{beamer}
+
+\usetheme{Warsaw}
+%\useoutertheme{}
+%\useinnertheme{}
+%\usefonttheme{}
+%\usecolortheme{}
+
+% Elimino los elementos de navegacion
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Redefinicion de teorema, definicion, ejemplo
+\newtheorem{teorema}[theorem]{Teorema}
+\newtheorem{definicion}[theorem]{Definición}
+\newenvironment{ejemplo}{\begin{exampleblock}{Ejemplo}}{\end{exampleblock}}
+
+\title{GNU Privacy Guard}
+\subtitle{GnuPG}
+\author[Milton Mazzarri]{Milton R. Mazzarri S. \\
+\href{mailto:milmazz@gmail.com}{milmazz@gmail.com}
+}
+\date{14 de Octubre de 2010}
+
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\hypersetup{
+pdfauthor={Milton R. Mazzarri S.},
+pdftitle={GNU Privacy Guard}
+}
+
+\begin{document}
+
+\frame{
+\titlepage
+}
+
+\frame{
+    \frametitle{¿Por qué?}
+
+    \begin{itemize}[<+->]
+        \item
+        Si desea ser desarrollador oficial del Proyecto Debian, necesita una
+        llave pública firmada por otros desarrolladores Debian.
+        \item
+        Promover políticas de seguridad en nuestras comunicaciones.
+        \item
+        Preparar al asistente a participar en las fiestas de firmado de llaves
+        \end{itemize}
+}
+
+\frame{
+    \frametitle{Fiestas de firmado de llaves}
+
+    \begin{itemize}[<+->]
+        \item
+        Promueve la extensión de la red de confianza (\alert{WoT}).
+        \item
+        Oportunidad de discutir políticas alrededor de la criptografia fuerte.
+        \item
+        Discusiones acerca de implementación de tecnologías de cifrado.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Criptografía}
+
+    \begin{itemize}[<+->]
+        \item
+        Disciplina de las matemáticas que ocupan la seguridad de la
+        información.
+        \item
+        Cifrado.
+        \item
+        Autenticación.
+        \item
+        Control de accesos.
+        \item
+        Ocultar el significado del mensaje y no su existencia.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Claves simétricas}
+
+    \begin{itemize}[<+->]
+        \item
+        Una clave para cifrar el contenido.
+        \item
+        Debe utilizar la misma clave para descifrar.
+        \item
+        Como transfiere de manera segura esa contraseña.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Claves asimétricas}
+
+    \begin{itemize}[<+->]
+        \item
+        Clave pública.
+        \item
+        Clave privada.
+        \item
+        El remitente utiliza la clave pública del destinatario para cifrar el
+        mensaje.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Firmas digitales}
+
+    \begin{itemize}[<+->]
+        \item
+        Permite verificar la autoría del mensaje.
+        \item
+        El destinatario comprueba que el ``supuesto'' remitente es quien afirma
+        ser.
+        \item
+        El remitente firma el mensaje con su llave privada.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Beneficios}
+
+    \begin{itemize}[<+->]
+        \item
+        Evitar riesgos de seguridad.
+        \item
+        Verificar el origen de los datos.
+        \item
+        Es muy sencillo falsificar la dirección y nombre del remitente.
+        \item
+        Es imposible falsificar la firma digital del remitente.
+        \item
+        Verificar la integridad del mensaje.
+        \item
+        Cualquier manipulación del contenido arrojará un error en la
+        verificación.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Anillos de confianza}
+
+    \begin{itemize}[<+->]
+        \item
+        Para confiar en una clave debemos verificar quien le ha firmado.
+        \item
+        Cuando se confie plenamente en la clave del firmante, se puede confiar
+        en la firma que acompaña a la clave de un tercero.
+        \item
+        Tener certeza que la clave es la correcta por medio del fingerprint o
+        huella digital.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{¿Es GnuPG la panacea?}
+
+    \begin{itemize}[<+->]
+        \item
+        Es un paso hacia un sistema más seguro.
+        \item
+        No basta con la instalación de un programa criptográfico.
+        \item
+        Debe pensar en la seguridad en general.
+    \end{itemize}
+}
+
+\begin{frame}[fragile]
+    \frametitle{Instalación de GnuPG}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    # aptitude install gnupg
+    \end{verbatim}
+    \end{ejemplo}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Uso y gestión de Llaves (I)}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    $ gpg --gen-key
+    \end{verbatim}
+    \end{ejemplo}
+
+    \begin{itemize}[<+->]
+        \item
+        Se genera un par de claves (privada y pública).
+        \item
+        El algoritmo recomendado por \alert{GnuPG} es \texttt{DSA/ElGamal} ya
+        que no está patentado.
+        \item
+        Longitud de clave (1024, 4096, 2048).
+        \item
+        Nombre y Apellidos, entre parentesis el apodo.
+    \end{itemize}
+\end{frame}
+
+\frame{
+    \frametitle{Uso y gestion de Llaves (II)}
+
+    \begin{itemize}[<+->]
+        \item
+        El último paso consiste en el ingreso de \alert{una frase de paso} o
+        \emph{passphare}.
+        \item
+        Su frase debe ser:
+        \begin{itemize}
+            \item
+            Larga
+            \item
+            Combinar mayúsculas, minúsculas, números.
+            \item
+            Trate de utilizar la letra ñ.
+            \item
+            Dificil de adivinar.
+        \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Certificados de revocación}
+
+    \begin{itemize}[<+->]
+        \item
+        Después de crear sus llaves, se recomienda crear certificados de
+        revocación.
+        \item
+        Es necesario en caso de olvidar la frase de paso.
+        \item
+        Oportuno usar cuando la llave privada está en riesgo.
+    \end{itemize}
+}
+
+\begin{frame}[fragile]
+    \frametitle{Exportar llaves (I)}
+
+    \begin{ejemplo}
+    \begin{semiverbatim}
+    \uncover<1->{$ gpg --export [UID]}
+    \uncover<2->{$ gpg --keyserver pgp.mit.edu --send-keys UID}
+    \end{semiverbatim}
+    \end{ejemplo}
+
+    \begin{itemize}
+        \item<1->
+        Si no especifica un UID se exportaran todas las claves presentes en el
+        anillo de llaves.
+        \item<2->
+        Se puede exportar a un servidor de claves públicas.
+    \end{itemize}
+\end{frame} 
+
+\begin{frame}[fragile]
+    \frametitle{Exportar llaves (II)}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    $ gpg --export-secret-keys UID > clave.asc
+    \end{verbatim}
+    \end{ejemplo}
+
+    \begin{itemize}[<+->]
+        \item
+        Exporta la llave privada a un medio fisico
+        \item
+        Almacene \texttt{clave.asc} en un lugar seguro.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Crear certificado de revocación}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    $ gpg --gen-revoke UID
+    \end{verbatim}
+    \end{ejemplo}
+
+    Ahora Deberá:
+
+    \begin{itemize}[<+->]
+        \item
+        Imprimirlo.
+        \item
+        Exportarlo a un medio fisico.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Importar claves}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    $ gpg --import [fichero]
+    \end{verbatim}
+    \end{ejemplo}
+
+    Cuando se recibe la clave pública de otra persona hay que añadirla a la
+    base de datos (anillo) para lograr hacer uso de ella.
+\end{frame}
+
+\frame{
+    \frametitle{Administrar las claves (I)}
+
+    \begin{description}
+        \item[\texttt{gpg --list-keys}] muestra las claves presentes.
+        \item[\texttt{gpg --fingerprint}] muestra las huellas digitales.
+        \item[\texttt{gpg --delete-key UID}] elimina un \texttt{UID} dado.
+    \end{description}
+}
+
+\begin{frame}[fragile]
+    \frametitle{Administrar las claves (II)}
+
+    \begin{ejemplo}
+    \begin{verbatim}
+    $ gpg --edit-key UID
+    \end{verbatim}
+    \end{ejemplo}
+
+    \begin{itemize}
+        \item
+        Editar la fecha de caducidad.
+        \item
+        Añadir una huella digital.
+        \item
+        Firmar la clave.
+    \end{itemize}
+\end{frame}
+
+\frame{
+    \frametitle{Frontends}
+
+    \begin{itemize}
+        \item
+        \url{http://enigmail.mozdev.org/}
+        \item
+        \url{http://www.gnupg.org/(es)/related_software/frontends.html}
+        \item
+        \url{http://people.redhat.com/~walters/gnome-gpg}
+        \item
+        \url{http://developer.kde.org/~kgpg}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{¡Muchas gracias!}
+
+    ¿Desea contactarme?
+
+    \begin{description}
+    \item[correo] \href{mailto:milmazz@gmail.com}{milmazz@gmail.com}
+    \item[blog] \href{http://blog.milmazz.com.ve}{http://blog.milmazz.com.ve}
+    \item[nombre] Milton R. Mazzarri S.
+    \end{description}
+}
+\end{document}

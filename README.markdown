@@ -41,6 +41,9 @@ acuerdo a currículo impartido en las escuelas venezolanas.
 software, se discute las características y funcionalidades que ofrece el
 software. Además del proceso de personalización por medio de complementos o
 plugins.
+ * *GnuPG, GNU Privacy Guard*, importancia del cifrado de la información,
+diferencias entre llaves simétricas y asimétricas, criptografía, fiestas de
+firmado de llaves, beneficios. Instalación y suo práctico de GnuPG.
 
 Convertir las fuentes .tex a PDF
 --------------------------------
