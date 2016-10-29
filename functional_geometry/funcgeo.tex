@@ -1,21 +1,49 @@
 \documentclass{beamer}
 \usepackage{graphicx}
+\usepackage[spanish]{babel}
 \usetheme[numbering=none]{metropolis}
 \title{Functional Geometry Description of Escher's Fish}
-\subtitle{Having fun with Elixir}
 \date{Oct 29, 2016}
 \author{Milton Mazzarri}
 \institute{Mexico City Erlang Factory 2016}
 \begin{document}
     \maketitle
 
-    \section{Operaciones basicas}
+    \section{Introducción}
 
-    \begin{frame}{f, rot(f), flip(f), rot(flip(f))}
+    \begin{frame}{Square Limit}
+
+        \begin{figure}
+           \centering
+            \includegraphics[width=0.6\textwidth]{./figs/square-limit}
+            \caption{Square Limit de M.C. Escher}
+            \label{fig:square_limit}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{Functional Geometry}
+        Functional Geometry es un paper publicado por Peter Henderson\cite{Henderson82}, en donde se descompone la obra "Square
+        Limit" de M.C. Escher
+        \begin{quote}
+            A picture is an example of a complex object that can be described
+            in terms of its parts. Yet a picture needs to be rendered on a
+            printer or a screen by a device that expects to be given a sequence
+            of commands. Programming that sequence of commands directly is much
+            harder than having an application generate the commands
+            automatically from the simpler, denotational description.
+        \end{quote}
+    \end{frame}
+
+    \section{Operaciones básicas}
+
+    \begin{frame}{f}
+        \begin{alertblock}{Nota}
+        El borde que rodea la figura no se considera parte de ella, su objetivo es indicar su extensión.
+        \end{alertblock}
 
         \begin{figure}
             \centering
-            \includegraphics[width=0.4\textwidth]{./figs/basic/f}
+            \includegraphics[width=0.35\textwidth]{./figs/basic/f}
             \caption{\texttt{f} denota imagen con letra F}
             \label{fig:f}
         \end{figure}
@@ -24,7 +52,7 @@
 
     \begin{frame}{Resumen de operaciones}
 
-        \begin{itemize}[<+- | alert@+>]
+        \begin{itemize}
             \item $rot(picture) :: picture$
             \item $flip(picture) :: picture$
             \item $rot45(picture) :: picture$
@@ -35,8 +63,8 @@
 
     \end{frame}
 
-    \begin{frame}{Rotacion}
-        Rota una imagen 90$^{\circ}$ anti-horario.
+    \begin{frame}{Rotación}
+        Rota una imagen 90$^{\circ}$ en sentido contrario a las agujas del reloj.
 
         \begin{figure}
             \centering
@@ -47,7 +75,7 @@
     \end{frame}
 
     \begin{frame}{Flip}
-        Voltea una imagen a lo largo de su eje central
+        Voltea una imagen a lo largo de su eje vertical central
 
         \begin{figure}
             \centering
@@ -57,8 +85,8 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Rotacion y Flip}
-        Aplica \texttt{flip(f)} a la imagen y seguidamente \texttt{rot()}
+    \begin{frame}{Rotación y Flip}
+        Aplica \texttt{flip(f)} a la imagen y seguidamente aplica \texttt{rot()}
 
         \begin{figure}
             \centering
@@ -68,7 +96,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Rotacion 45$^{\circ}$}
+    \begin{frame}{Rotación 45$^{\circ}$}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot45}
@@ -95,7 +123,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Combinacion above/beside}
+    \begin{frame}{Combinación above/beside}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/above_beside_f}
@@ -104,7 +132,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Superposicion}
+    \begin{frame}{Superposición}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/over}
@@ -113,76 +141,80 @@
         \end{figure}
     \end{frame}
 
-	\section{Laws}
-	
-	\begin{frame}{Laws}
-		\begin{equation*}
-			rot(rot(rot(rot(p)))) = p
-		\end{equation*}
-	\end{frame}
-		
-	\begin{frame}{Laws}
-		\begin{equation*}
-			rot(above(p, q)) = beside(rot(p), rot(q))
-		\end{equation*}
+    \section{Reglas}
 
-		\begin{equation*}
-			rot(beside(p, q)) = above(rot(q), rot(p))
-		\end{equation*}
+    \begin{frame}{Reglas (Unit Test)}
 
-		\begin{equation*}
-			flip(beside(p, q)) = beside(flip(q), flip(p))
-		\end{equation*}
-	\end{frame}
+        \begin{equation*}
+        rot(rot(rot(rot(p)))) = p
+        \end{equation*}
 
-	\section{Implementation}
+        \begin{equation*}
+        rot(above(p, q)) = beside(rot(p), rot(q))
+        \end{equation*}
 
-	\begin{frame}{Implementation}
-		\begin{equation*}
-		over(p, q)(a, b, c) = p(a, b, c) \cup q(a, b, c)
-		\end{equation*}
+        \begin{equation*}
+        rot(beside(p, q)) = above(rot(q), rot(p))
+        \end{equation*}
 
-		\begin{equation*}
-		blank(a, b, c) = \text{{}}
-		\end{equation*}
+        \begin{equation*}
+        flip(beside(p, q)) = beside(flip(q), flip(p))
+        \end{equation*}
+    \end{frame}
 
-		\begin{equation*}
-		beside(p, q)(a, b, c) = p(a, \frac{b}{2}, c) \cup q(a + \frac{b}{2}, \frac{b}{2}, c)
-		\end{equation*}
+    \section{Implementación}
 
-		\begin{equation*}
-		above(p, q)(a, b, c) = p(a, b, \frac{c}{2}) \cup q (a + \frac{c}{2}, b, \frac{c}{2})
-		\end{equation*}
-	\end{frame}
-		
-	\begin{frame}{Implementation}
-		\begin{equation*}
-		rot(p)(a, b, c) = p(a + b, c, -b)
-		\end{equation*}
+    \begin{frame}{Implementación}
+        \begin{equation*}
+        over(p, q)(a, b, c) = p(a, b, c) \cup q(a, b, c)
+        \end{equation*}
 
-		\begin{equation*}
-		flip(p)(a, b, c) = p(a + b, -b, c)
-		\end{equation*}
-		
-		\begin{equation*}
-		rot45(p)(a, b, c) = p(a + \frac{b + c}{2}, \frac{b + c}{2}, \frac{c - b}{2})
-		\end{equation*}
-	\end{frame}
+        \begin{equation*}
+        blank(a, b, c) = \text{\{\}}
+        \end{equation*}
 
-	\begin{frame}[standout]
-		Demo :)
-	\end{frame}
+        \begin{equation*}
+        beside(p, q)(a, b, c) = p(a, \frac{b}{2}, c) \cup q(a + \frac{b}{2}, \frac{b}{2}, c)
+        \end{equation*}
 
-	\begin{frame}{Posibles mejoras}
-		\begin{itemize}
-			\item Proveer salida en \url{https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths}{SVG Path}
-			\item Crear un API para interactuar, desde el front-end crear algo similar a Snap o Scratch
-			\item Profundizar en el paper de los franceses
-		\end{itemize}
-	\end{frame}
+        \begin{equation*}
+        above(p, q)(a, b, c) = p(a, b, \frac{c}{2}) \cup q (a + \frac{c}{2}, b, \frac{c}{2})
+        \end{equation*}
+    \end{frame}
 
-	\begin{frame}[standout]
-		Gracias!
-	\end{frame}
+    \begin{frame}{Implementación}
+        \begin{equation*}
+        rot(p)(a, b, c) = p(a + b, c, -b)
+        \end{equation*}
+
+        \begin{equation*}
+        flip(p)(a, b, c) = p(a + b, -b, c)
+        \end{equation*}
+
+        \begin{equation*}
+        rot45(p)(a, b, c) = p(a + \frac{b + c}{2}, \frac{b + c}{2}, \frac{c - b}{2})
+        \end{equation*}
+    \end{frame}
+
+    \begin{frame}[standout]
+        Demo
+    \end{frame}
+
+    \begin{frame}{Posibles mejoras}
+    \begin{itemize}
+    \item Proveer salida en \href{https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths}{SVG Path}
+    \item Crear un API para interactuar, desde el front-end crear algo similar a Snap o Scratch
+    \item Profundizar en la implementación hecha en CAML y que descompone la obra Circuit Limit de M.C. Escher
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}[standout]
+        Gracias!
+    \end{frame}
+
+    \begin{frame}[allowframebreaks]{Referencias}
+        \bibliography{funcgeo}
+        \bibliographystyle{abbrv}
+    \end{frame}
 
 \end{document}
