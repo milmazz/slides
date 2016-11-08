@@ -1,6 +1,7 @@
 \documentclass{beamer}
 \usepackage{graphicx}
-\usepackage[spanish]{babel}
+%\usepackage{tikz}
+%\usetikzlibrary{decorations.markings,arrows}
 \usetheme[numbering=none]{metropolis}
 \title{Functional Geometry Description of Escher's Fish}
 \date{Oct 29, 2016}
@@ -9,21 +10,21 @@
 \begin{document}
     \maketitle
 
-    \section{Introducción}
+    \section{Introduction}
 
     \begin{frame}{Square Limit}
 
         \begin{figure}
            \centering
-            \includegraphics[width=0.6\textwidth]{./figs/square-limit}
-            \caption{Square Limit de M.C. Escher}
+            \includegraphics[width=0.5\textwidth]{./figs/square-limit}
+            \caption{M.C. Escher's Square Limit}
             \label{fig:square_limit}
         \end{figure}
+        {\footnotesize Source: \url{https://www.wikiart.org/en/m-c-escher/square-limit}}
     \end{frame}
 
     \begin{frame}{Functional Geometry}
-        Functional Geometry es un paper publicado por Peter Henderson\cite{Henderson82}, en donde se descompone la obra "Square
-        Limit" de M.C. Escher
+        Functional Geometry is a paper by Peter Henderson\cite{Henderson82,Henderson02}, which deconstructs the M.C. Escher woodcut ``Square Limit''.
         \begin{quote}
             A picture is an example of a complex object that can be described
             in terms of its parts. Yet a picture needs to be rendered on a
@@ -34,23 +35,23 @@
         \end{quote}
     \end{frame}
 
-    \section{Operaciones básicas}
+    \section{Basic Operations}
 
     \begin{frame}{f}
-        \begin{alertblock}{Nota}
-        El borde que rodea la figura no se considera parte de ella, su objetivo es indicar su extensión.
+        \begin{alertblock}{Note}
+        The image it is located within a frame, but we do not consider the frame to be part of the picture.
         \end{alertblock}
 
         \begin{figure}
             \centering
             \includegraphics[width=0.35\textwidth]{./figs/basic/f}
-            \caption{\texttt{f} denota imagen con letra F}
+            \caption{\footnotesize The value \texttt{f} denotes the picture of the letter F}
             \label{fig:f}
         \end{figure}
 
     \end{frame}
 
-    \begin{frame}{Resumen de operaciones}
+    \begin{frame}{Basic operations on pictures}
 
         \begin{itemize}
             \item $rot(picture) :: picture$
@@ -63,8 +64,8 @@
 
     \end{frame}
 
-    \begin{frame}{Rotación}
-        Rota una imagen 90$^{\circ}$ en sentido contrario a las agujas del reloj.
+    \begin{frame}{Rotation}
+        Rotates a picture 90$^{\circ}$ anticlockwise.
 
         \begin{figure}
             \centering
@@ -75,7 +76,7 @@
     \end{frame}
 
     \begin{frame}{Flip}
-        Voltea una imagen a lo largo de su eje vertical central
+    	Flip a picture through its vertical centre axis.
 
         \begin{figure}
             \centering
@@ -85,9 +86,8 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Rotación y Flip}
-        Aplica \texttt{flip(f)} a la imagen y seguidamente aplica \texttt{rot()}
-
+    \begin{frame}{Rotation and Flip}
+        
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot_flip_f}
@@ -96,7 +96,9 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Rotación 45$^{\circ}$}
+    \begin{frame}{Rotation 45$^{\circ}$}
+    	Rotates a picture about its top left corner, through 45$^{\circ}$ anticlockwise.
+	
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot45}
@@ -105,7 +107,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Encima}
+    \begin{frame}{Above}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/above_f}
@@ -114,7 +116,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Al lado}
+    \begin{frame}{Beside}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/beside_f}
@@ -123,7 +125,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Combinación above/beside}
+    \begin{frame}{above/beside combination}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/above_beside_f}
@@ -132,7 +134,7 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{Superposición}
+    \begin{frame}{Superposition}
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/over}
@@ -141,9 +143,9 @@
         \end{figure}
     \end{frame}
 
-    \section{Reglas}
+    \section{Laws}
 
-    \begin{frame}{Reglas (Unit Test)}
+    \begin{frame}{Laws (Unit Test)}
 
         \begin{equation*}
         rot(rot(rot(rot(p)))) = p
@@ -162,9 +164,175 @@
         \end{equation*}
     \end{frame}
 
-    \section{Implementación}
+    \section{Square Limit}
 
-    \begin{frame}{Implementación}
+    \begin{frame}{p, q}
+
+        \begin{columns}[T,onlytextwidth]
+            \column{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{./figs/fishes/p}
+                    \caption{\texttt{p}}
+                    \label{fig:p}
+                \end{figure}
+
+            \column{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{./figs/fishes/q}
+                    \caption{\texttt{q}}
+                    \label{fig:q}
+                \end{figure}
+
+        \end{columns}
+
+    \end{frame}
+
+    \begin{frame}{r, s}
+        \begin{columns}[T,onlytextwidth]
+            \column{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{./figs/fishes/r}
+                    \caption{\texttt{r}}
+                    \label{fig:r}
+                \end{figure}
+
+            \column{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{./figs/fishes/s}
+                    \caption{\texttt{s}}
+                    \label{fig:s}
+                \end{figure}
+        \end{columns}
+
+    \end{frame}
+
+    \begin{frame}{t}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/t}
+            \caption{\texttt{t = quartet(p, q, r, s)}}
+            \label{fig:t}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{u}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/u}
+            \caption{\texttt{u = cycle(rot(q))}}
+            \label{fig:u}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{side1}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/side1}
+            \caption{\texttt{side1 = quartet(blank, blank, rot(t), t)}}
+            \label{fig:side1}
+        \end{figure}
+
+    \end{frame}
+
+   \begin{frame}{side2}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/side2}
+            \caption{\texttt{side2 = quartet(side1, side1, rot(t), t)}}
+            \label{fig:side2}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{corner1}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/corner1}
+            \caption{\texttt{corner1 = quartet(blank, blank, blank, u)}}
+            \label{fig:corner1}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{corner2}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/corner2}
+            \caption{\footnotesize \texttt{corner2 = quartet(corner1, side1, rot(side1), u)}}
+            \label{fig:corner2}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{pseudocorner}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/pseudocorner}
+            \caption{\tiny \texttt{pseudocorner = quartet(corner2, side2, rot(side2), rot(t))}}
+            \label{fig:pseudocorner}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{pseudolimit}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/pseudolimit}
+            \caption{\texttt{pseudolimit = cycle(pseudocorner)}}
+            \label{fig:pseudolimit}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{corner}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/corner}
+            \caption{corner}
+            \label{fig:corner}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{squarelimit}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/fishes/squarelimit}
+            \caption{squarelimit}
+            \label{fig:squarelimit}
+        \end{figure}
+
+    \end{frame}
+
+    \section{Implementation}
+
+    \begin{frame}{Vectors}
+        \begin{figure}
+            \centering
+            %% TODO: Include tikz picture instead
+            \includegraphics[width=0.5\textwidth]{./figs/vectors}
+            \caption{Basic vectors}
+            \label{fig:vectors}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{Implementation}
         \begin{equation*}
         over(p, q)(a, b, c) = p(a, b, c) \cup q(a, b, c)
         \end{equation*}
@@ -182,7 +350,7 @@
         \end{equation*}
     \end{frame}
 
-    \begin{frame}{Implementación}
+    \begin{frame}{Implementation}
         \begin{equation*}
         rot(p)(a, b, c) = p(a + b, c, -b)
         \end{equation*}
@@ -200,19 +368,31 @@
         Demo
     \end{frame}
 
-    \begin{frame}{Posibles mejoras}
-    \begin{itemize}
-    \item Proveer salida en \href{https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths}{SVG Path}
-    \item Crear un API para interactuar, desde el front-end crear algo similar a Snap o Scratch
-    \item Profundizar en la implementación hecha en CAML y que descompone la obra Circuit Limit de M.C. Escher
-    \end{itemize}
+    \begin{frame}{Future}
+        \begin{itemize}
+            \item Add support for \href{https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths}{SVG Path}.
+            \item Build an API, in the front-end could exist something like \href{http://byob.berkeley.edu/}{Snap}
+            \item Escher's ``Circuit Limit III'' picture.
+        \end{itemize}
+
+    \end{frame}
+
+    \begin{frame}{Circuit Limit III}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{./figs/Circle-Limit-III}
+            \caption{Circuit Limit III}
+            \label{fig:circuit_limit_iii}
+        \end{figure}
+        {\tiny Source: \url{http://mathstat.slu.edu/escher/upload/9/90/Circle-Limit-III.jpg}}
     \end{frame}
 
     \begin{frame}[standout]
-        Gracias!
+        Thanks!
+        \url{https://github.com/milmazz/func\_geo}
     \end{frame}
 
-    \begin{frame}[allowframebreaks]{Referencias}
+    \begin{frame}[allowframebreaks]{References}
         \bibliography{funcgeo}
         \bibliographystyle{abbrv}
     \end{frame}
