@@ -1,5 +1,7 @@
 \documentclass{beamer}
 \usepackage{graphicx}
+%\usepackage{epstopdf}
+%\epstopdfsetup{update}
 %\usepackage{tikz}
 %\usetikzlibrary{decorations.markings,arrows}
 \usetheme[numbering=none]{metropolis}
@@ -17,8 +19,7 @@
         \begin{figure}
            \centering
             \includegraphics[width=0.5\textwidth]{./figs/square-limit}
-            \caption{M.C. Escher's Square Limit}
-            \label{fig:square_limit}
+            \caption{M.C. Escher's Square Limit\label{fig:square_limit}}
         \end{figure}
         {\footnotesize Source: \url{https://www.wikiart.org/en/m-c-escher/square-limit}}
     \end{frame}
@@ -38,9 +39,8 @@
     \begin{frame}{Denotational description v. Explicit Sequence of Commands}
         \begin{figure}
             \centering
-            \includegraphics[width=0.5\textwidth]{./figs/sequence-v-denotation}
-            \caption{Denotational description v. explicit sequence of commands}
-            \label{fig:sequence}
+            \includegraphics[width=\textwidth]{./figs/sequence-v-denotation}
+            \caption{Denotational description v.\  explicit sequence of commands\label{fig:sequence}}
         \end{figure}
     \end{frame}
 
@@ -57,6 +57,7 @@
     \section{Basic Operations}
 
     \begin{frame}{f}
+        \metroset{block=fill}
         \begin{alertblock}{Note}
         The image it is located within a frame, but we do not consider the frame to be part of the picture.
         \end{alertblock}
@@ -64,8 +65,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.35\textwidth]{./figs/basic/f}
-            \caption{\footnotesize The value \texttt{f} denotes the picture of the letter F}
-            \label{fig:f}
+            \caption{\footnotesize The value \texttt{f} denotes the picture of the letter F\label{fig:f}}
         \end{figure}
 
     \end{frame}
@@ -89,8 +89,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot_f}
-            \caption{\texttt{rot(f)}}
-            \label{fig:rot_f}
+            \caption{\texttt{rot(f)}\label{fig:rot_f}}
         \end{figure}
     \end{frame}
 
@@ -100,8 +99,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/flip_f}
-            \caption{\texttt{flip(f)}}
-            \label{fig:flip_f}
+            \caption{\texttt{flip(f)}\label{fig:flip_f}}
         \end{figure}
     \end{frame}
 
@@ -110,8 +108,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot_flip_f}
-            \caption{\texttt{rot(flip(f))}}
-            \label{fig:rot_flip_f}
+            \caption{\texttt{rot(flip(f))}\label{fig:rot_flip_f}}
         \end{figure}
     \end{frame}
 
@@ -121,8 +118,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/rot45}
-            \caption{\texttt{rot45(f)}}
-            \label{fig:rot45}
+            \caption{\texttt{rot45(f)}\label{fig:rot45}}
         \end{figure}
     \end{frame}
 
@@ -133,8 +129,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/above_f}
-            \caption{\texttt{above(f, f)}}
-            \label{fig:above}
+            \caption{\texttt{above(f, f)}\label{fig:above}}
         \end{figure}
     \end{frame}
 
@@ -145,8 +140,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/beside_f}
-            \caption{\texttt{beside(f, f)}}
-            \label{fig:beside}
+            \caption{\texttt{beside(f, f)}\label{fig:beside}}
         \end{figure}
     \end{frame}
 
@@ -154,8 +148,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/above_beside_f}
-            \caption{\texttt{above(beside(f, f) f)}}
-            \label{fig:above_beside_f}
+            \caption{\texttt{above(beside(f, f) f)}\label{fig:above_beside_f}}
         \end{figure}
     \end{frame}
 
@@ -163,31 +156,65 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.4\textwidth]{./figs/basic/over}
-            \caption{\texttt{over(f, flip(f))}}
-            \label{fig:over_f}
+            \caption{\texttt{over(f, flip(f))}\label{fig:over_f}}
         \end{figure}
     \end{frame}
 
     \section{Laws}
 
-    \begin{frame}{Laws (Unit Test)}
+\begin{frame}[fragile]{Laws}
 
-        \begin{equation*}
-        rot(rot(rot(rot(p)))) = p
-        \end{equation*}
+\begin{equation*}
+  rot(rot(rot(rot(p)))) = p
+\end{equation*}
 
-        \begin{equation*}
-        rot(above(p, q)) = beside(rot(p), rot(q))
-        \end{equation*}
+\metroset{block=fill}
+\begin{exampleblock}{Unit Test}
+\begin{semiverbatim}
+\tiny
+\alert{test} {\color{gray}``p is equal after fourth continuos rotations''} \alert{do}
+ p {\color{magenta}=} p()
+ p\_rotated {\color{magenta}=} p |> rot() |> rot() |> rot() |> rot()
 
-        \begin{equation*}
-        rot(beside(p, q)) = above(rot(q), rot(p))
-        \end{equation*}
+ assert p\_rotated{\color{magenta}.}(\{0, 0\}, \{1, 0\}, \{0, 1\}) {\color{magenta}==} p{\color{magenta}.}(\{0, 0\}, \{1, 0\}, \{0, 1\})
+\alert{end}
+\end{semiverbatim}
+\end{exampleblock}
 
-        \begin{equation*}
-        flip(beside(p, q)) = beside(flip(q), flip(p))
-        \end{equation*}
-    \end{frame}
+\end{frame}
+
+\begin{frame}[fragile]{Laws}
+  \begin{equation*}
+  rot(above(p, q)) = beside(rot(p), rot(q))
+  \end{equation*}
+
+\metroset{block=fill}
+\begin{exampleblock}{Unit Test}
+\begin{semiverbatim}
+\tiny
+\alert{test} {\color{gray}``rot(above(p, q)) must be equal to beside(rot(p), rot(q))''} \alert{do}
+ p {\color{magenta}=} p()
+
+ p\_rotated {\color{magenta}=} rot(above(p, p))
+ p\_beside {\color{magenta}=} beside(rot(p), rot(p))
+
+ assert
+   p\_rotated{\color{magenta}.}(\{0, 0\}, \{1, 0\}, \{0, 1\}) {\color{magenta}==} p\_beside{\color{magenta}.}(\{0, 0\}, \{1, 0\}, \{0, 1\})
+\alert{end}
+\end{semiverbatim}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Laws}
+
+  \begin{equation*}
+  rot(beside(p, q)) = above(rot(q), rot(p))
+  \end{equation*}
+
+  \begin{equation*}
+  flip(beside(p, q)) = beside(flip(q), flip(p))
+  \end{equation*}
+\end{frame}
 
     \section{Square Limit}
 
@@ -198,16 +225,14 @@
                 \begin{figure}
                     \centering
                     \includegraphics[width=0.5\textwidth]{./figs/fishes/p}
-                    \caption{\texttt{p}}
-                    \label{fig:p}
+                    \caption{\texttt{p}\label{fig:p}}
                 \end{figure}
 
             \column{0.5\textwidth}
                 \begin{figure}
                     \centering
                     \includegraphics[width=0.5\textwidth]{./figs/fishes/q}
-                    \caption{\texttt{q}}
-                    \label{fig:q}
+                    \caption{\texttt{q}\label{fig:q}}
                 \end{figure}
 
         \end{columns}
@@ -220,30 +245,26 @@
                 \begin{figure}
                     \centering
                     \includegraphics[width=0.5\textwidth]{./figs/fishes/r}
-                    \caption{\texttt{r}}
-                    \label{fig:r}
+                    \caption{\texttt{r}\label{fig:r}}
                 \end{figure}
 
             \column{0.5\textwidth}
                 \begin{figure}
                     \centering
                     \includegraphics[width=0.5\textwidth]{./figs/fishes/s}
-                    \caption{\texttt{s}}
-                    \label{fig:s}
+                    \caption{\texttt{s}\label{fig:s}}
                 \end{figure}
         \end{columns}
 
     \end{frame}
 
     \begin{frame}{t}
-
+      \texttt{t} shows how nicely the four basic fish tiles fit together
         \begin{figure}
             \centering
-            \includegraphics[width=0.5\textwidth]{./figs/fishes/t}
-            \caption{\texttt{t = quartet(p, q, r, s)}}
-            \label{fig:t}
+            \includegraphics[width=0.4\textwidth]{./figs/fishes/t}
+            \caption{\texttt{t = quartet\(p, q, r, s\)}\label{fig:t}}
         \end{figure}
-
     \end{frame}
 
     \begin{frame}{u}
@@ -251,8 +272,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/u}
-            \caption{\texttt{u = cycle(rot(q))}}
-            \label{fig:u}
+            \caption{\texttt{u = cycle(rot(q))}\label{fig:u}}
         \end{figure}
 
     \end{frame}
@@ -262,8 +282,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/side1}
-            \caption{\texttt{side1 = quartet(blank, blank, rot(t), t)}}
-            \label{fig:side1}
+            \caption{\texttt{side1 = quartet(blank, blank, rot(t), t)}\label{fig:side1}}
         \end{figure}
 
     \end{frame}
@@ -273,8 +292,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/side2}
-            \caption{\texttt{side2 = quartet(side1, side1, rot(t), t)}}
-            \label{fig:side2}
+            \caption{\texttt{side2 = quartet(side1, side1, rot(t), t)}\label{fig:side2}}
         \end{figure}
 
     \end{frame}
@@ -284,8 +302,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/corner1}
-            \caption{\texttt{corner1 = quartet(blank, blank, blank, u)}}
-            \label{fig:corner1}
+            \caption{\texttt{corner1 = quartet(blank, blank, blank, u)}\label{fig:corner1}}
         \end{figure}
 
     \end{frame}
@@ -295,8 +312,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/corner2}
-            \caption{\footnotesize \texttt{corner2 = quartet(corner1, side1, rot(side1), u)}}
-            \label{fig:corner2}
+            \caption{\footnotesize \texttt{corner2 = quartet(corner1, side1, rot(side1), u)}\label{fig:corner2}}
         \end{figure}
 
     \end{frame}
@@ -306,8 +322,7 @@
 %        \begin{figure}
 %            \centering
 %            \includegraphics[width=0.5\textwidth]{./figs/fishes/pseudocorner}
-%            \caption{\tiny \texttt{pseudocorner = quartet(corner2, side2, rot(side2), rot(t))}}
-%            \label{fig:pseudocorner}
+%            \caption{\tiny \texttt{pseudocorner = quartet(corner2, side2, rot(side2), rot(t))}\label{fig:pseudocorner}}
 %        \end{figure}
 %
 %    \end{frame}
@@ -317,19 +332,18 @@
 %        \begin{figure}
 %            \centering
 %            \includegraphics[width=0.5\textwidth]{./figs/fishes/pseudolimit}
-%            \caption{\texttt{pseudolimit = cycle(pseudocorner)}}
-%            \label{fig:pseudolimit}
+%            \caption{\texttt{pseudolimit = cycle(pseudocorner)}\label{fig:pseudolimit}}
 %        \end{figure}
 %
 %    \end{frame}
 
     \begin{frame}{corner}
+      \texttt{\scriptsize corner = nonet(corner2, side2, side2, rot(side2), u, rot(t), rot(side2), rot(t), rot(q))}
 
         \begin{figure}
             \centering
-            \includegraphics[width=0.5\textwidth]{./figs/fishes/corner}
-            \caption{corner}
-            \label{fig:corner}
+            \includegraphics[width=0.4\textwidth]{./figs/fishes/corner}
+            \caption{\texttt{corner}\label{fig:corner}}
         \end{figure}
 
     \end{frame}
@@ -339,8 +353,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/fishes/squarelimit}
-            \caption{squarelimit}
-            \label{fig:squarelimit}
+            \caption{\texttt{squarelimit = cycle(corner)}\label{fig:squarelimit}}
         \end{figure}
 
     \end{frame}
@@ -352,8 +365,7 @@
             \centering
             %% TODO: Include tikz picture instead
             \includegraphics[width=0.5\textwidth]{./figs/vectors}
-            \caption{Basic vectors}
-            \label{fig:vectors}
+            \caption{Basic vectors\label{fig:vectors}}
         \end{figure}
     \end{frame}
 
@@ -398,6 +410,8 @@
             \item Add support for \href{https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths}{SVG Path}.
             %\item Build an API, in the front-end could exist something like \href{http://byob.berkeley.edu/}{Snap}
             \item Escher's ``Circuit Limit III'' picture.
+            \item Increase code coverage
+            \item Include property-based tests (QuickCheck, Quixir)
         \end{itemize}
 
     \end{frame}
@@ -406,8 +420,7 @@
         \begin{figure}
             \centering
             \includegraphics[width=0.5\textwidth]{./figs/Circle-Limit-III}
-            \caption{Circuit Limit III}
-            \label{fig:circuit_limit_iii}
+            \caption{Circuit Limit III\label{fig:circuit_limit_iii}}
         \end{figure}
         {\tiny Source: \url{http://mathstat.slu.edu/escher/upload/9/90/Circle-Limit-III.jpg}}
     \end{frame}
@@ -415,6 +428,7 @@
     \begin{frame}[standout]
         Thanks!
         \url{https://github.com/milmazz/func\_geo}
+        \url{https://github.com/milmazz/slides}
     \end{frame}
 
     \begin{frame}[allowframebreaks]{References}
