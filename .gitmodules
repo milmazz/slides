@@ -1,0 +1,4 @@
+[submodule "functional_geometry"]
+	path = functional_geometry
+	url = git@github.com:milmazz/func_geo_slides.git
+	branch = master
