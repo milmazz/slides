@@ -6,7 +6,7 @@ charlas, talleres, entre otros.
 
 Las presentaciones se encuentran organizadas por tópicos en particular.
 
-El software que he utilizado para generar las presentaciones es [Beamer][], 
+El software que he utilizado para generar las presentaciones es [Beamer][],
 la cual es una clase [LaTeX][] que facilita enormente la producción de
 presentaciones de alta calidad, este software trabaja de la mano con `pdflatex`,
 también con `dvips`.
@@ -14,6 +14,10 @@ también con `dvips`.
 Lista de presentaciones
 -----------------------
 
+ * *Functional Geometry Description of Escher’s Fish* es un trabajo basado en
+   la publicación *Functional Geometry* de Peter Henderson. En dicha
+   publicación Henderson deconstruye la obra _Square Limit_ de M.C. Escher
+   haciendo uso de _álgebra de imágenes_.
  * *Análisis estático del código fuente en Python*, se describe el concepto
 del análisis estático del código, se indica los pasos a seguir para la
 detección de errores mediante la herramienta **Pylint**, se exponen sus
@@ -52,8 +56,8 @@ Lo primero que debe hacer es descargar el código fuente en LaTeX de las
 presentaciones, debe tomar en cuenta que para ello necesita tener
 instalado [Git][]:
 
-    $ git clone http://github.com/milmazz/Presentations.git
-    $ cd Presentations
+    $ git clone --recurse-submodules http://github.com/milmazz/slides.git
+    $ cd slides
 
 Antes de utilizar el comando `pdflatex` asegúrese de tener instalado
 el paquete [Beamer][], el procedimiento de instalación puede variar
@@ -63,7 +67,7 @@ En sistemas Debian GNU/Linux o derivados para instalar el paquete
 [Beamer][] es tan sencillo como ejecutar el siguiente comando
 como superusuario:
 
-    # aptitude install latex-beamer
+    # apt-get install latex-beamer
 
 Finalmente, podrá generar la presentación de la siguiente manera:
 
